@@ -1,0 +1,303 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALLOC_ZERO	pmap.h	/^	ALLOC_ZERO = 1<<0,$/;"	e	enum:__anon1
+CR0_AM	mmu.h	86;"	d
+CR0_CD	mmu.h	88;"	d
+CR0_EM	mmu.h	81;"	d
+CR0_ET	mmu.h	83;"	d
+CR0_MP	mmu.h	80;"	d
+CR0_NE	mmu.h	84;"	d
+CR0_NW	mmu.h	87;"	d
+CR0_PE	mmu.h	79;"	d
+CR0_PG	mmu.h	89;"	d
+CR0_TS	mmu.h	82;"	d
+CR0_WP	mmu.h	85;"	d
+CR4_DE	mmu.h	94;"	d
+CR4_MCE	mmu.h	92;"	d
+CR4_PCE	mmu.h	91;"	d
+CR4_PSE	mmu.h	93;"	d
+CR4_PVI	mmu.h	96;"	d
+CR4_TSD	mmu.h	95;"	d
+CR4_VME	mmu.h	97;"	d
+DPL_KERNEL	x86/memory.h	4;"	d
+DPL_USER	x86/memory.h	5;"	d
+EXTPHYSMEM	memlayout.h	93;"	d
+FALSE	nconst.h	5;"	d
+FEC_PR	mmu.h	123;"	d
+FEC_U	mmu.h	125;"	d
+FEC_WR	mmu.h	124;"	d
+FL_AC	mmu.h	117;"	d
+FL_AF	mmu.h	102;"	d
+FL_CF	mmu.h	100;"	d
+FL_DF	mmu.h	107;"	d
+FL_ID	mmu.h	120;"	d
+FL_IF	mmu.h	106;"	d
+FL_IOPL_0	mmu.h	110;"	d
+FL_IOPL_1	mmu.h	111;"	d
+FL_IOPL_2	mmu.h	112;"	d
+FL_IOPL_3	mmu.h	113;"	d
+FL_IOPL_MASK	mmu.h	109;"	d
+FL_NT	mmu.h	114;"	d
+FL_OF	mmu.h	108;"	d
+FL_PF	mmu.h	101;"	d
+FL_RF	mmu.h	115;"	d
+FL_SF	mmu.h	104;"	d
+FL_TF	mmu.h	105;"	d
+FL_VIF	mmu.h	118;"	d
+FL_VIP	mmu.h	119;"	d
+FL_VM	mmu.h	116;"	d
+FL_ZF	mmu.h	103;"	d
+GD_KD	memlayout.h	16;"	d
+GD_KT	memlayout.h	15;"	d
+GD_TSS0	memlayout.h	19;"	d
+GD_UD	memlayout.h	18;"	d
+GD_UT	memlayout.h	17;"	d
+GateDescriptor	x86/memory.h	/^struct GateDescriptor {$/;"	s
+Gatedesc	mmu.h	/^struct Gatedesc {$/;"	s
+HZ	device/timer.h	4;"	d
+IOPHYSMEM	memlayout.h	92;"	d
+JOS_INC_MEMLAYOUT_H	memlayout.h	2;"	d
+JOS_INC_MMU_H	mmu.h	2;"	d
+JOS_INC_TYPES_H	types.h	2;"	d
+JOS_KERN_PMAP_H	pmap.h	4;"	d
+KADDR	pmap.h	34;"	d
+KERNBASE	memlayout.h	87;"	d
+KSTACKTOP	memlayout.h	96;"	d
+KSTKGAP	memlayout.h	98;"	d
+KSTKSIZE	memlayout.h	97;"	d
+MAX	types.h	49;"	d
+MIN	types.h	43;"	d
+MMIOBASE	memlayout.h	102;"	d
+MMIOLIM	memlayout.h	101;"	d
+NPDENTRIES	mmu.h	45;"	d
+NPTENTRIES	mmu.h	46;"	d
+NR_IRQ	x86/cpu.h	34;"	d
+NR_SEGMENTS	x86/memory.h	7;"	d
+NULL	nconst.h	7;"	d
+NULL	types.h	5;"	d
+PADDR	pmap.h	22;"	d
+PDX	mmu.h	33;"	d
+PDXSHIFT	mmu.h	55;"	d
+PFTEMP	memlayout.h	137;"	d
+PGADDR	mmu.h	42;"	d
+PGNUM	mmu.h	30;"	d
+PGOFF	mmu.h	39;"	d
+PGSHIFT	mmu.h	49;"	d
+PGSIZE	mmu.h	48;"	d
+PTE_A	mmu.h	63;"	d
+PTE_ADDR	mmu.h	76;"	d
+PTE_AVAIL	mmu.h	70;"	d
+PTE_D	mmu.h	64;"	d
+PTE_G	mmu.h	66;"	d
+PTE_P	mmu.h	58;"	d
+PTE_PCD	mmu.h	62;"	d
+PTE_PS	mmu.h	65;"	d
+PTE_PWT	mmu.h	61;"	d
+PTE_SYSCALL	mmu.h	73;"	d
+PTE_U	mmu.h	60;"	d
+PTE_W	mmu.h	59;"	d
+PTSHIFT	mmu.h	52;"	d
+PTSIZE	mmu.h	51;"	d
+PTX	mmu.h	36;"	d
+PTXSHIFT	mmu.h	54;"	d
+PageInfo	memlayout.h	/^struct PageInfo {$/;"	s
+Pseudodesc	mmu.h	/^struct Pseudodesc {$/;"	s
+ROUNDDOWN	types.h	58;"	d
+ROUNDUP	types.h	64;"	d
+SCR_HEIGHT	device/video.h	11;"	d
+SCR_HEIGHT	video.h	8;"	d
+SCR_SIZE	device/video.h	12;"	d
+SCR_SIZE	video.h	9;"	d
+SCR_WIDTH	device/video.h	10;"	d
+SCR_WIDTH	video.h	7;"	d
+SEG	mmu.h	142;"	d
+SEG	mmu.h	172;"	d
+SEG16	mmu.h	176;"	d
+SEG_FAULT	mmu.h	170;"	d
+SEG_KERNEL_CODE	x86/memory.h	8;"	d
+SEG_KERNEL_DATA	x86/memory.h	9;"	d
+SEG_NULL	mmu.h	139;"	d
+SEG_NULL	mmu.h	168;"	d
+SETCALLGATE	mmu.h	296;"	d
+SETGATE	mmu.h	282;"	d
+STA_A	mmu.h	189;"	d
+STA_C	mmu.h	186;"	d
+STA_E	mmu.h	185;"	d
+STA_R	mmu.h	188;"	d
+STA_W	mmu.h	187;"	d
+STA_X	mmu.h	184;"	d
+STS_CG16	mmu.h	195;"	d
+STS_CG32	mmu.h	201;"	d
+STS_IG16	mmu.h	197;"	d
+STS_IG32	mmu.h	202;"	d
+STS_LDT	mmu.h	193;"	d
+STS_T16A	mmu.h	192;"	d
+STS_T16B	mmu.h	194;"	d
+STS_T32A	mmu.h	199;"	d
+STS_T32B	mmu.h	200;"	d
+STS_TG	mmu.h	196;"	d
+STS_TG16	mmu.h	198;"	d
+STS_TG32	mmu.h	203;"	d
+Segdesc	mmu.h	/^struct Segdesc {$/;"	s
+TENHZ	device/timer.h	5;"	d
+TRUE	nconst.h	4;"	d
+Taskstate	mmu.h	/^struct Taskstate {$/;"	s
+TrapFrame	x86/memory.h	/^struct TrapFrame {$/;"	s
+UENVS	memlayout.h	116;"	d
+ULIM	memlayout.h	104;"	d
+UPAGES	memlayout.h	114;"	d
+USTABDATA	memlayout.h	139;"	d
+USTACKTOP	memlayout.h	128;"	d
+UTEMP	memlayout.h	134;"	d
+UTEXT	memlayout.h	131;"	d
+UTOP	memlayout.h	123;"	d
+UVPT	memlayout.h	112;"	d
+UXSTACKTOP	memlayout.h	125;"	d
+VMEM_ADDR	device/video.h	13;"	d
+VMEM_ADDR	video.h	10;"	d
+__ASSERT_H__	nassert.h	2;"	d
+__COMMON_H__	common.h	2;"	d
+__CONST_H__	nconst.h	2;"	d
+__FONT_H__	device/font.h	2;"	d
+__GAME_H__	game.h	2;"	d
+__IRQ_H__	irq.h	2;"	d
+__KEYBOARD_H__	keyboard.h	2;"	d
+__LOGO_H__	device/logo.h	2;"	d
+__PALETTE_H__	device/palette.h	2;"	d
+__STRING_H__	nstring.h	2;"	d
+__TIMER_H__	device/timer.h	2;"	d
+__TIMER_H__	timer.h	2;"	d
+__TYPES_H__	ntypes.h	2;"	d
+__VIDEO_H__	device/video.h	2;"	d
+__VIDEO_H__	video.h	2;"	d
+__X86_CPU_H__	x86/cpu.h	2;"	d
+__X86_IO_H__	x86/io.h	2;"	d
+__X86_MEMORY_H__	x86/memory.h	2;"	d
+__x86_H__	x86/x86.h	2;"	d
+_kaddr	pmap.h	/^_kaddr(const char *file, int line, physaddr_t pa)$/;"	f
+_paddr	pmap.h	/^_paddr(const char *file, int line, void *kva)$/;"	f
+assert	nassert.h	7;"	d
+bool	ntypes.h	/^typedef int bool;$/;"	t
+bool	types.h	/^typedef _Bool bool;$/;"	t
+disable_interrupt	x86/cpu.h	/^disable_interrupt(void) {$/;"	f
+draw_pixel	device/video.h	/^draw_pixel(int x, int y, int color) {$/;"	f
+draw_pixel	video.h	/^draw_pixel(int x, int y, int color) {$/;"	f
+eax	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame
+ebp	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame
+ebx	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame
+ecx	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame
+edi	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame
+edx	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame
+enable_interrupt	x86/cpu.h	/^enable_interrupt(void) {$/;"	f
+esi	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame
+false	types.h	/^enum { false, true };$/;"	e	enum:__anon2
+gd_args	mmu.h	/^	unsigned gd_args : 5;        \/\/ # args, 0 for interrupt\/trap gates$/;"	m	struct:Gatedesc
+gd_dpl	mmu.h	/^	unsigned gd_dpl : 2;         \/\/ descriptor(meaning new) privilege level$/;"	m	struct:Gatedesc
+gd_off_15_0	mmu.h	/^	unsigned gd_off_15_0 : 16;   \/\/ low 16 bits of offset in segment$/;"	m	struct:Gatedesc
+gd_off_31_16	mmu.h	/^	unsigned gd_off_31_16 : 16;  \/\/ high bits of offset in segment$/;"	m	struct:Gatedesc
+gd_p	mmu.h	/^	unsigned gd_p : 1;           \/\/ Present$/;"	m	struct:Gatedesc
+gd_rsv1	mmu.h	/^	unsigned gd_rsv1 : 3;        \/\/ reserved(should be zero I guess)$/;"	m	struct:Gatedesc
+gd_s	mmu.h	/^	unsigned gd_s : 1;           \/\/ must be 0 (system)$/;"	m	struct:Gatedesc
+gd_sel	mmu.h	/^	unsigned gd_sel : 16;        \/\/ segment selector$/;"	m	struct:Gatedesc
+gd_type	mmu.h	/^	unsigned gd_type : 4;        \/\/ type(STS_{TG,IG32,TG32})$/;"	m	struct:Gatedesc
+in_byte	x86/io.h	/^in_byte(uint16_t port) {$/;"	f
+int16_t	ntypes.h	/^typedef          short int16_t;$/;"	t
+int16_t	types.h	/^typedef short int16_t;$/;"	t
+int32_t	ntypes.h	/^typedef          int   int32_t;$/;"	t
+int32_t	types.h	/^typedef int int32_t;$/;"	t
+int64_t	types.h	/^typedef long long int64_t;$/;"	t
+int8_t	ntypes.h	/^typedef          char  int8_t;$/;"	t
+int8_t	types.h	/^typedef __signed char int8_t;$/;"	t
+intptr_t	types.h	/^typedef int32_t intptr_t;$/;"	t
+irq	x86/memory.h	/^	int32_t irq;$/;"	m	struct:TrapFrame
+off_t	types.h	/^typedef int32_t off_t;$/;"	t
+offset_15_0	x86/memory.h	/^	uint32_t offset_15_0      : 16;$/;"	m	struct:GateDescriptor
+offset_31_16	x86/memory.h	/^	uint32_t offset_31_16     : 16;$/;"	m	struct:GateDescriptor
+offsetof	types.h	71;"	d
+out_byte	x86/io.h	/^out_byte(uint16_t port, int8_t data) {$/;"	f
+pa2page	pmap.h	/^pa2page(physaddr_t pa)$/;"	f
+pad0	x86/memory.h	/^	uint32_t pad0             : 8;$/;"	m	struct:GateDescriptor
+page2kva	pmap.h	/^page2kva(struct PageInfo *pp)$/;"	f
+page2pa	pmap.h	/^page2pa(struct PageInfo *pp)$/;"	f
+pd_base	mmu.h	/^	uint32_t pd_base;		\/\/ Base address$/;"	m	struct:Pseudodesc
+pd_lim	mmu.h	/^	uint16_t pd_lim;		\/\/ Limit$/;"	m	struct:Pseudodesc
+pde_t	memlayout.h	/^typedef uint32_t pde_t;$/;"	t
+physaddr_t	types.h	/^typedef uint32_t physaddr_t;$/;"	t
+pp_link	memlayout.h	/^	struct PageInfo *pp_link;$/;"	m	struct:PageInfo	typeref:struct:PageInfo::PageInfo
+pp_ref	memlayout.h	/^	uint16_t pp_ref;$/;"	m	struct:PageInfo
+ppn_t	types.h	/^typedef uint32_t ppn_t;$/;"	t
+present	x86/memory.h	/^	uint32_t present          : 1;$/;"	m	struct:GateDescriptor
+privilege_level	x86/memory.h	/^	uint32_t privilege_level  : 2;$/;"	m	struct:GateDescriptor
+pte_t	memlayout.h	/^typedef uint32_t pte_t;$/;"	t
+save_idt	x86/cpu.h	/^save_idt(void *addr, uint32_t size) {$/;"	f
+sd_avl	mmu.h	/^	unsigned sd_avl : 1;        \/\/ Unused (available for software use)$/;"	m	struct:Segdesc
+sd_base_15_0	mmu.h	/^	unsigned sd_base_15_0 : 16; \/\/ Low bits of segment base address$/;"	m	struct:Segdesc
+sd_base_23_16	mmu.h	/^	unsigned sd_base_23_16 : 8; \/\/ Middle bits of segment base address$/;"	m	struct:Segdesc
+sd_base_31_24	mmu.h	/^	unsigned sd_base_31_24 : 8; \/\/ High bits of segment base address$/;"	m	struct:Segdesc
+sd_db	mmu.h	/^	unsigned sd_db : 1;         \/\/ 0 = 16-bit segment, 1 = 32-bit segment$/;"	m	struct:Segdesc
+sd_dpl	mmu.h	/^	unsigned sd_dpl : 2;        \/\/ Descriptor Privilege Level$/;"	m	struct:Segdesc
+sd_g	mmu.h	/^	unsigned sd_g : 1;          \/\/ Granularity: limit scaled by 4K when set$/;"	m	struct:Segdesc
+sd_lim_15_0	mmu.h	/^	unsigned sd_lim_15_0 : 16;  \/\/ Low bits of segment limit$/;"	m	struct:Segdesc
+sd_lim_19_16	mmu.h	/^	unsigned sd_lim_19_16 : 4;  \/\/ High bits of segment limit$/;"	m	struct:Segdesc
+sd_p	mmu.h	/^	unsigned sd_p : 1;          \/\/ Present$/;"	m	struct:Segdesc
+sd_rsv1	mmu.h	/^	unsigned sd_rsv1 : 1;       \/\/ Reserved$/;"	m	struct:Segdesc
+sd_s	mmu.h	/^	unsigned sd_s : 1;          \/\/ 0 = system, 1 = application$/;"	m	struct:Segdesc
+sd_type	mmu.h	/^	unsigned sd_type : 4;       \/\/ Segment type (see STS_ constants)$/;"	m	struct:Segdesc
+segment	x86/memory.h	/^	uint32_t segment          : 16;$/;"	m	struct:GateDescriptor
+size_t	ntypes.h	/^typedef int32_t size_t;$/;"	t
+size_t	types.h	/^typedef uint32_t size_t;$/;"	t
+ssize_t	types.h	/^typedef int32_t ssize_t;$/;"	t
+system	x86/memory.h	/^	uint32_t system           : 1;$/;"	m	struct:GateDescriptor
+true	types.h	/^enum { false, true };$/;"	e	enum:__anon2
+ts_cr3	mmu.h	/^	physaddr_t ts_cr3;	\/\/ Page directory base$/;"	m	struct:Taskstate
+ts_cs	mmu.h	/^	uint16_t ts_cs;$/;"	m	struct:Taskstate
+ts_ds	mmu.h	/^	uint16_t ts_ds;$/;"	m	struct:Taskstate
+ts_eax	mmu.h	/^	uint32_t ts_eax;	\/\/ More saved state (registers)$/;"	m	struct:Taskstate
+ts_ebp	mmu.h	/^	uintptr_t ts_ebp;$/;"	m	struct:Taskstate
+ts_ebx	mmu.h	/^	uint32_t ts_ebx;$/;"	m	struct:Taskstate
+ts_ecx	mmu.h	/^	uint32_t ts_ecx;$/;"	m	struct:Taskstate
+ts_edi	mmu.h	/^	uint32_t ts_edi;$/;"	m	struct:Taskstate
+ts_edx	mmu.h	/^	uint32_t ts_edx;$/;"	m	struct:Taskstate
+ts_eflags	mmu.h	/^	uint32_t ts_eflags;$/;"	m	struct:Taskstate
+ts_eip	mmu.h	/^	uintptr_t ts_eip;	\/\/ Saved state from last task switch$/;"	m	struct:Taskstate
+ts_es	mmu.h	/^	uint16_t ts_es;		\/\/ Even more saved state (segment selectors)$/;"	m	struct:Taskstate
+ts_esi	mmu.h	/^	uint32_t ts_esi;$/;"	m	struct:Taskstate
+ts_esp	mmu.h	/^	uintptr_t ts_esp;$/;"	m	struct:Taskstate
+ts_esp0	mmu.h	/^	uintptr_t ts_esp0;	\/\/ Stack pointers and segment selectors$/;"	m	struct:Taskstate
+ts_esp1	mmu.h	/^	uintptr_t ts_esp1;$/;"	m	struct:Taskstate
+ts_esp2	mmu.h	/^	uintptr_t ts_esp2;$/;"	m	struct:Taskstate
+ts_fs	mmu.h	/^	uint16_t ts_fs;$/;"	m	struct:Taskstate
+ts_gs	mmu.h	/^	uint16_t ts_gs;$/;"	m	struct:Taskstate
+ts_iomb	mmu.h	/^	uint16_t ts_iomb;	\/\/ I\/O map base address$/;"	m	struct:Taskstate
+ts_ldt	mmu.h	/^	uint16_t ts_ldt;$/;"	m	struct:Taskstate
+ts_link	mmu.h	/^	uint32_t ts_link;	\/\/ Old ts selector$/;"	m	struct:Taskstate
+ts_padding1	mmu.h	/^	uint16_t ts_padding1;$/;"	m	struct:Taskstate
+ts_padding10	mmu.h	/^	uint16_t ts_padding10;$/;"	m	struct:Taskstate
+ts_padding2	mmu.h	/^	uint16_t ts_padding2;$/;"	m	struct:Taskstate
+ts_padding3	mmu.h	/^	uint16_t ts_padding3;$/;"	m	struct:Taskstate
+ts_padding4	mmu.h	/^	uint16_t ts_padding4;$/;"	m	struct:Taskstate
+ts_padding5	mmu.h	/^	uint16_t ts_padding5;$/;"	m	struct:Taskstate
+ts_padding6	mmu.h	/^	uint16_t ts_padding6;$/;"	m	struct:Taskstate
+ts_padding7	mmu.h	/^	uint16_t ts_padding7;$/;"	m	struct:Taskstate
+ts_padding8	mmu.h	/^	uint16_t ts_padding8;$/;"	m	struct:Taskstate
+ts_padding9	mmu.h	/^	uint16_t ts_padding9;$/;"	m	struct:Taskstate
+ts_ss	mmu.h	/^	uint16_t ts_ss;$/;"	m	struct:Taskstate
+ts_ss0	mmu.h	/^	uint16_t ts_ss0;	\/\/   after an increase in privilege level$/;"	m	struct:Taskstate
+ts_ss1	mmu.h	/^	uint16_t ts_ss1;$/;"	m	struct:Taskstate
+ts_ss2	mmu.h	/^	uint16_t ts_ss2;$/;"	m	struct:Taskstate
+ts_t	mmu.h	/^	uint16_t ts_t;		\/\/ Trap on task switch$/;"	m	struct:Taskstate
+type	x86/memory.h	/^	uint32_t type             : 4;$/;"	m	struct:GateDescriptor
+uint16_t	ntypes.h	/^typedef unsigned short uint16_t;$/;"	t
+uint16_t	types.h	/^typedef unsigned short uint16_t;$/;"	t
+uint32_t	ntypes.h	/^typedef unsigned int   uint32_t;$/;"	t
+uint32_t	types.h	/^typedef unsigned int uint32_t;$/;"	t
+uint64_t	types.h	/^typedef unsigned long long uint64_t;$/;"	t
+uint8_t	ntypes.h	/^typedef unsigned char  uint8_t;$/;"	t
+uint8_t	types.h	/^typedef unsigned char uint8_t;$/;"	t
+uintptr_t	types.h	/^typedef uint32_t uintptr_t;$/;"	t
+wait_for_interrupt	x86/cpu.h	/^wait_for_interrupt() {$/;"	f
+xxx	x86/memory.h	/^	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;$/;"	m	struct:TrapFrame

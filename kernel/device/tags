@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+FREQ_8253	timer.c	7;"	d	file:
+INTERLACE	video.c	15;"	d	file:
+NR_PALETTE_ENTRY	palette.c	10;"	d	file:
+PARTIAL_UPDATE	video.c	14;"	d	file:
+PARTIAL_UPDATE	video.c	18;"	d	file:
+SERIAL_PORT	serial.c	3;"	d	file:
+SLOW	video.c	11;"	d	file:
+TIMER_PORT	timer.c	6;"	d	file:
+VGA_DAC_DATA	palette.c	7;"	d	file:
+VGA_DAC_READ_INDEX	palette.c	5;"	d	file:
+VGA_DAC_WRITE_INDEX	palette.c	6;"	d	file:
+display_buffer	video.c	/^display_buffer(void) {$/;"	f
+draw_character	video.c	/^draw_character(char ch, int x, int y, int color) {$/;"	f	file:
+draw_string	video.c	/^draw_string(const char *str, int x, int y, int color) {$/;"	f
+font8x8_basic	font.c	/^char font8x8_basic[128][8] = {$/;"	v
+font_block	sfont.c	/^char font_block[8] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};$/;"	v
+init_serial	serial.c	/^init_serial(void) {$/;"	f
+init_timer	timer.c	/^init_timer(void) {$/;"	f
+palette	palette.c	/^static uint8_t palette[NR_PALETTE_ENTRY][3] = {$/;"	v	file:
+prepare_buffer	video.c	/^prepare_buffer(void) {$/;"	f
+read_palette	palette.c	/^void read_palette() {$/;"	f
+serial_idle	serial.c	/^serial_idle(void) {$/;"	f	file:
+serial_printc	serial.c	/^serial_printc(char ch) {$/;"	f
+vbuf	video.c	/^static uint8_t vbuf[SCR_SIZE];$/;"	v	file:
+vmem	video.c	/^uint8_t *vmem = VMEM_ADDR;$/;"	v
+vref	video.c	/^static uint8_t vref[SCR_SIZE];$/;"	v	file:
+write_palette	palette.c	/^void write_palette() {$/;"	f

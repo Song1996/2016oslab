@@ -4,7 +4,7 @@
 	 +-----------+------------------.        .-----------------+
 	 |   引导块   |  游戏二进制代码       ...        (ELF格式)     |
 	 +-----------+------------------`        '-----------------+
- * C代码将游戏文件整个加载到物理内存0x100000的位置，然后跳转到游戏的入口执行。至于为什么是0x100000，请参考游戏代码连接过程。 */
+ * C代码将游戏文件整个加载到物理内存0x100000的位置，然后跳转到游戏的入口执行。 */
 
 #include "boot.h"
 
@@ -23,12 +23,18 @@ bootmain(void) {
 	elf = (struct ELFHeader*)0x8000;
 
 	/* 读入ELF文件头 */
+	readseg((unsigned char*)elf, 4096, 0);
 
 	/* 把每个program segement依次读入内存 */
+	ph = (struct ProgramHeader*)((char *)elf + elf->phoff);
+	eph = ph + elf->phnum;
+	for(; ph < eph; ph ++) {
+		pa = (unsigned char*)ph->paddr; /* 获取物理地址 */
+		readseg(pa, ph->filesz, ph->off); /* 读入数据 */
+		for (i = pa + ph->filesz; i < pa + ph->memsz; *i ++ = 0);
+	}
 
-	/*跳转到程序中*/
-	asm volatile("hlt");
-
+	((void(*)(void))elf->entry)();
 }
 
 void

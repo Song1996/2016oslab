@@ -1,0 +1,112 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CHARACTER_PER_SECOND	game/game.c	8;"	d	file:
+CHECKSUM	entry.S	/^#define CHECKSUM (-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS))$/;"	d
+COLNUM	game/effect.c	9;"	d	file:
+DIRED	game/effect.c	15;"	d	file:
+DIREL	game/effect.c	12;"	d	file:
+DIRENUM	game/effect.c	11;"	d	file:
+DIRER	game/effect.c	13;"	d	file:
+DIREU	game/effect.c	14;"	d	file:
+EMPTY	game/effect.c	18;"	d	file:
+FOOD	game/effect.c	16;"	d	file:
+FOOD_PER_TENSECOND	game/game.c	11;"	d	file:
+FPS	game/game.c	7;"	d	file:
+FREQ_8253	device/timer.c	7;"	d	file:
+INTERLACE	device/video.c	16;"	d	file:
+INTERRUPT_GATE_32	irq/idt.c	3;"	d	file:
+IRQ_SLAVE	irq/i8259.c	5;"	d	file:
+MULTIBOOT_HEADER_FLAGS	entry.S	/^#define MULTIBOOT_HEADER_FLAGS (0)$/;"	d
+MULTIBOOT_HEADER_MAGIC	entry.S	/^#define MULTIBOOT_HEADER_MAGIC (0x1BADB002)$/;"	d
+NR_PALETTE_ENTRY	device/palette.c	10;"	d	file:
+PARTIAL_UPDATE	device/video.c	15;"	d	file:
+PARTIAL_UPDATE	device/video.c	19;"	d	file:
+PORT_PIC_MASTER	irq/i8259.c	3;"	d	file:
+PORT_PIC_SLAVE	irq/i8259.c	4;"	d	file:
+RELOC	entry.S	/^#define	RELOC(x) ((x) - KERNBASE)$/;"	d
+ROWNUM	game/effect.c	10;"	d	file:
+SERIAL_PORT	device/serial.c	3;"	d	file:
+SLOW	device/video.c	12;"	d	file:
+SNAKE	game/effect.c	17;"	d	file:
+SRL	entry.S	/^#define SRL(val, shamt)		(((val) >> (shamt)) & ~(-1 << (32 - (shamt))))$/;"	d
+TIMER_PORT	device/timer.c	6;"	d	file:
+TRAP_GATE_32	irq/idt.c	4;"	d	file:
+UPDATERATE	game/game.c	6;"	d	file:
+UPDATE_PER_SECOND	game/game.c	9;"	d	file:
+VGA_DAC_DATA	device/palette.c	7;"	d	file:
+VGA_DAC_READ_INDEX	device/palette.c	5;"	d	file:
+VGA_DAC_WRITE_INDEX	device/palette.c	6;"	d	file:
+_start	entry.S	/^_start = RELOC(entry)$/;"	d
+asm_do_irq	irq/do_irq.S	/^asm_do_irq:$/;"	l
+bootstack	entry.S	/^bootstack:$/;"	l
+bootstacktop	entry.S	/^bootstacktop:$/;"	l
+create_new_food	game/effect.c	/^create_new_food(void) {$/;"	f
+direction	game/effect.c	/^	int direction;$/;"	m	struct:snakenode	file:
+display_buffer	device/video.c	/^display_buffer(void) {$/;"	f
+do_keyboard	irq/irq_handle.c	/^static void (*do_keyboard)(int);$/;"	v	file:
+do_syscall	syscall/do_syscall.c	/^void do_syscall(struct TrapFrame *tf){	$/;"	f
+do_timer	irq/irq_handle.c	/^static void (*do_timer)(void);$/;"	v	file:
+draw_block	device/video.c	/^draw_block(int x,int y,int color) {$/;"	f
+draw_character	device/video.c	/^draw_character(char ch, int x, int y, int color) {$/;"	f	file:
+draw_gg	game/effect.c	/^void draw_gg(){$/;"	f
+draw_logo	device/video.c	/^draw_logo(){$/;"	f
+draw_string	device/video.c	/^draw_string(const char *str, int x, int y, int color) {$/;"	f
+entry	entry.S	/^entry:$/;"	l
+entry_pgdir	entrypgdir.c	/^pde_t entry_pgdir[NPDENTRIES] = {$/;"	v
+entry_pgtable	entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES] = {$/;"	v
+entry_pgtable	entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES];$/;"	v
+font8x8_basic	device/font.c	/^char font8x8_basic[128][8] = {$/;"	v
+game_init	main.c	/^void game_init(void) {$/;"	f
+gamepool	game/effect.c	/^static int gamepool [ROWNUM][COLNUM];$/;"	v	file:
+get_fps	game/game.c	/^get_fps() {$/;"	f
+get_ggflag	game/effect.c	/^get_ggflag(void) {$/;"	f
+get_len	game/effect.c	/^get_len(void) {$/;"	f
+ggflag	game/effect.c	/^static bool ggflag = FALSE;$/;"	v	file:
+idt	irq/idt.c	/^struct GateDescriptor idt[NR_IRQ];$/;"	v	typeref:struct:GateDescriptor
+init_idt	irq/idt.c	/^void init_idt() {$/;"	f
+init_intr	irq/i8259.c	/^init_intr(void) {$/;"	f
+init_serial	device/serial.c	/^init_serial(void) {$/;"	f
+init_timer	device/timer.c	/^init_timer(void) {$/;"	f
+irq_handle	irq/irq_handle.c	/^irq_handle(struct TrapFrame *tf) {$/;"	f
+logo	device/logo.c	/^char logo[150*200]=$/;"	v
+main_loop	game/game.c	/^main_loop(void) {$/;"	f
+palette	device/palette.c	/^static uint8_t palette[NR_PALETTE_ENTRY][3] = {$/;"	v	file:
+prepare_buffer	device/video.c	/^prepare_buffer(void) {$/;"	f
+printk_test	main.c	/^void printk_test(void){$/;"	f
+querysys_blank	game/game.c	/^static bool querysys_blank(){$/;"	f	file:
+querysys_direkey	game/effect.c	/^static inline bool querysys_direkey(uint32_t direkey){$/;"	f	file:
+read_palette	device/palette.c	/^void read_palette() {$/;"	f
+real_fps	game/game.c	/^static int real_fps;$/;"	v	file:
+redraw_screen	game/effect.c	/^redraw_screen() {$/;"	f
+relocated	entry.S	/^relocated:$/;"	l
+serial_idle	device/serial.c	/^serial_idle(void) {$/;"	f	file:
+serial_printc	device/serial.c	/^serial_printc(char ch) {$/;"	f
+set_fps	game/game.c	/^set_fps(int value) {$/;"	f
+set_intr	irq/idt.c	/^set_intr(struct GateDescriptor *ptr, uint32_t selector, uint32_t offset, uint32_t dpl) {$/;"	f	file:
+set_keyboard_intr_handler	irq/irq_handle.c	/^set_keyboard_intr_handler( void (*ptr)(int) ) {$/;"	f
+set_timer_intr_handler	irq/irq_handle.c	/^set_timer_intr_handler( void (*ptr)(void) ) {$/;"	f
+set_trap	irq/idt.c	/^set_trap(struct GateDescriptor *ptr, uint32_t selector, uint32_t offset, uint32_t dpl) {$/;"	f	file:
+show_logo	game/effect.c	/^void show_logo(){$/;"	f
+snake	game/effect.c	/^static struct snakenode snake[ COLNUM * ROWNUM ];$/;"	v	typeref:struct:snakenode	file:
+snakelen	game/effect.c	/^static int snakelen ;$/;"	v	file:
+snakenode	game/effect.c	/^struct snakenode {$/;"	s	file:
+spin	entry.S	/^spin:	jmp	spin$/;"	l
+sysin_byte	irq/irq_handle.c	/^static inline uint8_t sysin_byte(uint16_t port){$/;"	f	file:
+sysin_byte	syscall/do_syscall.c	/^static inline uint8_t sysin_byte(uint16_t port){$/;"	f	file:
+sysout_byte	irq/irq_handle.c	/^static inline void sysout_byte(uint16_t port,int8_t data){$/;"	f	file:
+sysout_byte	syscall/do_syscall.c	/^static inline void sysout_byte(uint16_t port,int8_t data){$/;"	f	file:
+tick	game/game.c	/^volatile int tick = 0;$/;"	v
+timer_event	game/game.c	/^timer_event(void) {$/;"	f
+update_keypress	game/effect.c	/^update_keypress(void) {$/;"	f
+update_snake_pos	game/effect.c	/^update_snake_pos(void) {$/;"	f
+used	game/effect.c	/^	bool used;$/;"	m	struct:snakenode	file:
+vbuf	device/video.c	/^static uint8_t vbuf[SCR_SIZE];$/;"	v	file:
+vmem	device/video.c	/^uint8_t *vmem = VMEM_ADDR;$/;"	v
+vref	device/video.c	/^static uint8_t vref[SCR_SIZE];$/;"	v	file:
+write_palette	device/palette.c	/^void write_palette() {$/;"	f
+x	game/effect.c	/^	int x,y;$/;"	m	struct:snakenode	file:
+y	game/effect.c	/^	int x,y;$/;"	m	struct:snakenode	file:

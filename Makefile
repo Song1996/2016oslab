@@ -16,9 +16,10 @@ CFLAGS += -I . #头文件搜索目录
 CFLAGS += -O0 #不开优化, 方便调试
 CFLAGS += -fno-builtin #禁止内置函数
 CFLAGS += -ggdb3 #GDB调试信息
+CFLAGS += -fno-stack-protector
 
 QEMU_OPTIONS := -serial stdio #以标准输入输为串口(COM1)
-QEMU_OPTIONS += -d int #输出中断信息
+#QEMU_OPTIONS += -d int #输出中断信息
 QEMU_OPTIONS += -monitor telnet:127.0.0.1:1111,server,nowait #telnet monitor
 
 QEMU_DEBUG_OPTIONS := -S #启动不执行

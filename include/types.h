@@ -66,10 +66,6 @@ typedef int32_t off_t;
 	uint32_t __n = (uint32_t) (n);				\
 	(typeof(a)) (ROUNDDOWN((uint32_t) (a) + __n - 1, __n));	\
 })
-/*
-#define PGROUNDDOWN(a) (ROUNDDOWN(a,PGSIZE))
-#define PGROUNDUP(a) (ROUNDUP(a,PGSIZE))
-*/
 
 // Return the offset of 'member' relative to the beginning of a struct type
 #define offsetof(type, member)  ((size_t) (&((type*)0)->member))

@@ -1,13 +1,16 @@
 #ifndef __VIDEO_H__
 #define __VIDEO_H__
 
-#include "include/ntypes.h"
-#include "include/nassert.h"
-
+#include "./include/common.h"
+/*
+#include "./include/ntypes.h"
+#include "const.h"
+#include "assert.h"
+*/
 #define SCR_WIDTH  320
 #define SCR_HEIGHT 200
 #define SCR_SIZE ((SCR_WIDTH) * (SCR_HEIGHT))
-#define VMEM_ADDR  (0xa0000)
+#define VMEM_ADDR  ((uint8_t*)0xA0000)
 
 extern uint8_t *vmem;
 
@@ -17,9 +20,9 @@ draw_pixel(int x, int y, int color) {
 	vmem[(x << 8) + (x << 6) + y] = color;
 }
 
-void prepare_buffer();
-void display_buffer();
-void blue_screen();
-
+void prepare_buffer(void);
+void display_buffer(void);
+void draw_block(int,int,int);
+void draw_logo(void);
 void draw_string(const char*, int, int, int);
 #endif

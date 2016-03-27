@@ -131,14 +131,6 @@
  *
  */
 
-#define DPL_KERNEL              0
-#define DPL_USER                3
-
-#define NR_SEGMENTS             3
-#define SEG_KERNEL_CODE         1 
-#define SEG_KERNEL_DATA         2
-
-
 #ifdef __ASSEMBLER__
 
 /*
@@ -154,7 +146,7 @@
 
 #else	// not __ASSEMBLER__
 
-#include <include/types.h>
+#include "./include/types.h"
 
 // Segment Descriptors
 struct Segdesc {
@@ -261,26 +253,17 @@ struct Taskstate {
 };
 
 // Gate descriptors for interrupts and traps
-
-
-struct GateDescriptor {
-	uint32_t offset_15_0      : 16;//low 16bit of offset in segment
-	uint32_t segment          : 16;//segment selector
-	uint32_t pad0             : 8;//low 5#args, 0 for interrupt/trap gates high 3bit:reserved(should be 0 I guess)
-	uint32_t type             : 4;//type(STS_{TG,IG32,TG32})
-	uint32_t system           : 1;//must be 0(system)
-	uint32_t privilege_level  : 2;//descriptor(meaning new)privilege
-	uint32_t present          : 1;//Present
-	uint32_t offset_31_16     : 16;//high bits of offset in segment
+struct Gatedesc {
+	unsigned gd_off_15_0 : 16;   // low 16 bits of offset in segment
+	unsigned gd_sel : 16;        // segment selector
+	unsigned gd_args : 5;        // # args, 0 for interrupt/trap gates
+	unsigned gd_rsv1 : 3;        // reserved(should be zero I guess)
+	unsigned gd_type : 4;        // type(STS_{TG,IG32,TG32})
+	unsigned gd_s : 1;           // must be 0 (system)
+	unsigned gd_dpl : 2;         // descriptor(meaning new) privilege level
+	unsigned gd_p : 1;           // Present
+	unsigned gd_off_31_16 : 16;  // high bits of offset in segment
 };
-
-
-
-struct TrapFrame {
-	uint32_t edi, esi, ebp, xxx, ebx, edx, ecx, eax;
-	int32_t irq;
-};
-
 
 // Set up a normal interrupt/trap gate descriptor.
 // - istrap: 1 for a trap (= exception) gate, 0 for an interrupt gate.

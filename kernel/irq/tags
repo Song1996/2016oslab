@@ -1,0 +1,22 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+INTERRUPT_GATE_32	idt.c	3;"	d	file:
+IRQ_SLAVE	i8259.c	5;"	d	file:
+PORT_PIC_MASTER	i8259.c	3;"	d	file:
+PORT_PIC_SLAVE	i8259.c	4;"	d	file:
+TRAP_GATE_32	idt.c	4;"	d	file:
+asm_do_irq	do_irq.S	/^asm_do_irq:$/;"	l
+do_keyboard	irq_handle.c	/^static void (*do_keyboard)(int);$/;"	v	file:
+do_timer	irq_handle.c	/^static void (*do_timer)(void);$/;"	v	file:
+idt	idt.c	/^struct GateDescriptor idt[NR_IRQ];$/;"	v	typeref:struct:GateDescriptor
+init_idt	idt.c	/^void init_idt() {$/;"	f
+init_intr	i8259.c	/^init_intr(void) {$/;"	f
+irq_handle	irq_handle.c	/^irq_handle(struct TrapFrame *tf) {$/;"	f
+set_intr	idt.c	/^set_intr(struct GateDescriptor *ptr, uint32_t selector, uint32_t offset, uint32_t dpl) {$/;"	f	file:
+set_keyboard_intr_handler	irq_handle.c	/^set_keyboard_intr_handler( void (*ptr)(int) ) {$/;"	f
+set_timer_intr_handler	irq_handle.c	/^set_timer_intr_handler( void (*ptr)(void) ) {$/;"	f
+set_trap	idt.c	/^set_trap(struct GateDescriptor *ptr, uint32_t selector, uint32_t offset, uint32_t dpl) {$/;"	f	file:
