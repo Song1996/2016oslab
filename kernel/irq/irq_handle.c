@@ -28,6 +28,9 @@ irq_handle(struct TrapFrame *tf) {
 		do_syscall(tf);
 	}else if(tf->irq < 1000) {
 			switch(tf->irq){
+				case 14:
+					printk("irq 14\n");
+					break;
 			default:
 				printk("unhandled exception!   %d\n", tf->irq);
 				assert(0);

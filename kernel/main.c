@@ -13,8 +13,11 @@ void printk_test(void);
 void loader();
 void readseg(unsigned char* , int, int);
 
-typedef uint32_t pte_t;
-extern pte_t* entry_pgtable;
+typedef uint32_t* pde_t;
+typedef uint32_t* pte_t;
+extern pde_t entry_pgdir[];
+extern pte_t entry_pgtable[];
+void mem_init(void);
 
 static inline int 
 in_long(short port) {
@@ -35,6 +38,16 @@ void game_init(void) {
 	//main_loop();
 	//assert(0);
 	//page_init();	
+	/*printk("pte	%x\n",entry_pgdir);
+	for(int k=0;k<100;k++){
+	for(int i=0;i<10;i++){
+		printk("%x	",entry_pgdir[i+k*10]);
+	}
+		printk("\n");
+	}
+	if((unsigned)entry_pgtable==0x103020)printk("helll!\n");
+	else printk("%x\n",entry_pgtable);*/
+	mem_init();
 	loader();
 	while(1);
 	assert(0); /* main_loop是死循环，永远无法返回这里 */

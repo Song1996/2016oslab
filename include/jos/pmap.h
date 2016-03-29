@@ -2,13 +2,16 @@
 
 #ifndef JOS_KERN_PMAP_H
 #define JOS_KERN_PMAP_H
+#ifndef JOS_KERNEL
+//# error "This is a JOS kernel header; user programs should not #include it"
+#endif
 
-#include "memlayout.h"
-#include "stdio.h"
+#include <./include/jos/memlayout.h>
+#include <./include/jos/assert.h>
 
-//extern char bootstacktop[], bootstack[];
+extern char bootstacktop[], bootstack[];
 
-extern struct PageInfo pages[];
+extern struct PageInfo *pages;
 extern size_t npages;
 
 extern pde_t *kern_pgdir;
@@ -24,8 +27,8 @@ extern pde_t *kern_pgdir;
 static inline physaddr_t
 _paddr(const char *file, int line, void *kva)
 {
-	if ((uint32_t)kva < KERNBASE)
-		printk(file, line, "PADDR called with invalid kva 0x%x", kva);
+	//if ((uint32_t)kva < KERNBASE)
+	//	_panic(file, line, "PADDR called with invalid kva %08lx", kva);
 	return (physaddr_t)kva - KERNBASE;
 }
 
@@ -36,8 +39,8 @@ _paddr(const char *file, int line, void *kva)
 static inline void*
 _kaddr(const char *file, int line, physaddr_t pa)
 {
-	if (PGNUM(pa) >= npages)
-		printk("KADDR called with invalid pa 0x%x", pa);
+	//if (PGNUM(pa) >= npages)
+	//	_panic(file, line, "KADDR called with invalid pa %08lx", pa);
 	return (void *)(pa + KERNBASE);
 }
 
@@ -59,7 +62,6 @@ void	page_decref(struct PageInfo *pp);
 
 void	tlb_invalidate(pde_t *pgdir, void *va);
 
-
 static inline physaddr_t
 page2pa(struct PageInfo *pp)
 {
@@ -69,8 +71,8 @@ page2pa(struct PageInfo *pp)
 static inline struct PageInfo*
 pa2page(physaddr_t pa)
 {
-	if (PGNUM(pa) >= npages)
-		printk("pa2page called with invalid pa");
+	//if (PGNUM(pa) >= npages)
+	//	panic("pa2page called with invalid pa");
 	return &pages[PGNUM(pa)];
 }
 
