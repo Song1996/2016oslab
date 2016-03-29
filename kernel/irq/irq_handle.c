@@ -34,7 +34,7 @@ irq_handle(struct TrapFrame *tf) {
 		}
 	
 
-	} else if (tf->irq == 1000) {
+	} else if (tf->irq == 1000) {	
 		do_timer();
 	} else if (tf->irq == 1001) {
 		uint32_t code = in_byte(0x60);

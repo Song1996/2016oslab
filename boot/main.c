@@ -10,6 +10,24 @@
 
 #define SECTSIZE 512
 
+/* I/O处理函数 */
+static inline char
+in_byte(short port) {
+	char data;
+	asm volatile("in %1,%0" : "=a" (data) : "d" (port));
+	return data;
+}
+static inline int 
+in_long(short port) {
+	int data;
+	asm volatile("in %1, %0" : "=a" (data) : "d" (port));
+	return data;
+}
+static inline void
+out_byte(short port, char data) {
+	asm volatile("out %0,%1" : : "a" (data), "d" (port));
+}
+
 void readseg(unsigned char *, int, int);
 
 void
@@ -25,6 +43,8 @@ bootmain(void) {
 	/* 读入ELF文件头 */
 	readseg((unsigned char*)elf, 4096, 0);
 
+	const unsigned elf_magic = 0x464c457f;
+	if(*(unsigned*)elf!=elf_magic)while(1);
 	/* 把每个program segement依次读入内存 */
 	ph = (struct ProgramHeader*)((char *)elf + elf->phoff);
 	eph = ph + elf->phnum;

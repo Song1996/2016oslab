@@ -3,8 +3,8 @@
 #ifndef JOS_KERN_PMAP_H
 #define JOS_KERN_PMAP_H
 
-#include "memlayout.h"
-#include "stdio.h"
+#include "./include/memlayout.h"
+#include "./include/jos/stdio.h"
 
 //extern char bootstacktop[], bootstack[];
 
