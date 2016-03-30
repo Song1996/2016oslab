@@ -23,14 +23,22 @@ void
 irq_handle(struct TrapFrame *tf) {
 	if(tf->irq<0){
 		printk("tf->irq<0   %d\n",tf->irq);
-		assert(0);
+		//assert(0);
 	}else if(tf->irq==0x80){
 		do_syscall(tf);
 	}else if(tf->irq < 1000) {
 			switch(tf->irq){
-				case 14:
-					printk("irq 14\n");
-					break;
+			case 6:
+				printk("irq 6\n");
+				break;
+			case 14:
+				printk("irq 14\n");
+				break;
+			case 13:
+				printk("irq 13\n");
+				printk("%x %x %x %x",tf->eax,tf->ebx,tf->ecx,tf->ecx);
+				assert(0);
+				break;
 			default:
 				printk("unhandled exception!   %d\n", tf->irq);
 				assert(0);

@@ -94,36 +94,6 @@ mem_init(void)
 	
 	page_init();
 
-	struct PageInfo *pp1,*pp2,*pp;
-	struct PageInfo **tp[2]={&pp1,&pp2};
-	for(pp=page_free_list;pp;pp=pp->pp_link){
-		int pagetype = (PDX(page2pa(pp)) >= 1024);
-		*tp[pagetype] = pp;
-		tp[pagetype] = &pp->pp_link;
-	}
-	*tp[1]=0;
-	*tp[0]=pp2;
-	page_free_list=pp1;
-	printk("Hi%x\n",page2pa(pp1));
-
-	page_alloc(ALLOC_ZERO);
-	page_alloc(ALLOC_ZERO);
-	page_alloc(ALLOC_ZERO);
-	page_alloc(ALLOC_ZERO);
-	page_alloc(ALLOC_ZERO);
-	page_alloc(ALLOC_ZERO);
-	page_alloc(ALLOC_ZERO);
-
-	while(1);
-	extern pde_t* entry_pgdir;
-	
-	boot_map_region(entry_pgdir,0xd0000000,0x1000,0x400000,PTE_P|PTE_W|PTE_U);
-	unsigned i;
-	for(i=0xd0000000;i<(0xd000000-0x1000);i+=4){
-		*(int*)i=0x9c9c9c9c;
-		printk("%x ",*(int*)i);
-	}
-	
 	
 /*
 	check_page_free_list(1);
@@ -146,8 +116,8 @@ mem_init(void)
 				UPAGES,
 				ROUNDUP((sizeof(struct PageInfo)*npages),PGSIZE),
 				PADDR(pages),PTE_U);
-	//page_alloc(ALLOC_ZERO);
-//	while(1);
+	page_alloc(ALLOC_ZERO);
+	while(1);
 	//for(int i=0;i<ROUNDUP(npages*sizeof(struct PageInfo),PGSIZE);i+=PGSIZE)
 	 // page_insert(kern_pgdir,pa2page(PADDR(pages)+i),(void*)(UPAGES+i),PTE_U);
 
@@ -164,7 +134,7 @@ mem_init(void)
 	// Your code goes here:
 
 
-	boot_map_region(kern_pgdir,0xc008000,0x8000,0x8000,PTE_W);
+	boot_map_region(kern_pgdir,KSTACKTOP-KSTKSIZE,KSTKSIZE,PADDR(bootstack),PTE_W);
 	//for(int i=0;i<KSTKSIZE;i+=PGSIZE)
 	 // page_insert(kern_pgdir,pa2page(PADDR(bootstack)+i),(void*)(KSTACKTOP-KSTKSIZE+i),PTE_W);
 
@@ -178,9 +148,9 @@ mem_init(void)
 	// Your code goes here:
 
 	boot_map_region(kern_pgdir,
-				0xc00a0000,
-				0x100000-0xa0000,
-				0xa0000,PTE_W);
+				KERNBASE,
+				0xc00a0000-KERNBASE,
+				0x0,PTE_W);
 	/*
 	for(int i=0;i<0xffffffff-KERNBASE;i+=PGSIZE){
 		if(i<npages*PGSIZE){
@@ -201,15 +171,12 @@ mem_init(void)
 	//
 	// If the machine reboots at this point, you've probably set up your
 	// kern_pgdir wrong.
-
 	lcr3(PADDR(kern_pgdir));
-	while(1);
-	/*
+/*
 	check_page_free_list(0);
 */
 	// entry.S set the really important flags in cr0 (including enabling
 	// paging).  Here we configure the rest of the flags that we care about.
-	
 	cr0 = rcr0();
 	cr0 |= CR0_PE|CR0_PG|CR0_AM|CR0_WP|CR0_NE|CR0_MP;
 	cr0 &= ~(CR0_TS|CR0_EM);
@@ -279,9 +246,8 @@ page_init(void)
 			printk("page error: i %d\n", i);
 	}
 */
-	
 	size_t i;
-	for (i = npages-1; i >= 1; i--) {	
+	for (i = 0; i < npages; i++) {
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];
@@ -293,7 +259,7 @@ page_init(void)
 	pgend=pgend+1;
 	pgstart=pgstart-1;	
 	printk("%x	\n",pgend);
-	pgstart->pp_link=pgend;
+	pgend->pp_link=pgstart;
 
 }
 
@@ -376,9 +342,9 @@ pte_t *
 pgdir_walk(pde_t *pgdir, const void *va, int create)
 {
 	// Fill this function in
-	 pde_t * pde; //va(virtual address) point to pa(physical address)
+	  pde_t * pde; //va(virtual address) point to pa(physical address)
 	  pte_t * pgtable; //same as pde
-	  struct PageInfo *pp;
+	  struct Page *pp;
 
 	  pde = &pgdir[PDX(va)]; // va->pgdir
 	  if(*pde & PTE_P) { 
@@ -386,8 +352,8 @@ pgdir_walk(pde_t *pgdir, const void *va, int create)
 	  } else {
 		//page table page not exist
 		if(!create || 
-		   !(pp = page_alloc(ALLOC_ZERO)) ||
-		   !(pgtable = (pte_t*)page2kva(pp))) 
+		   (pp = page_alloc(ALLOC_ZERO))!=NULL ||
+		   (pgtable = (pte_t*)page2kva(pp))!=NULL) 
 			return NULL;
 		    
 		pp->pp_ref++;

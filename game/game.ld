@@ -8,7 +8,7 @@ ENTRY(main_loop)
 
 SECTIONS
 {
-	. = 0x100000;
+	. = 0x8048000;
 	PROVIDE(start = .);
 	.text : AT(0x100000){
 		*(.text .text.*)

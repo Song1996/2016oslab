@@ -54,6 +54,7 @@ static bool querysys_blank(){
 
 void
 main_loop(void) {
+	printk("hello world!\n");
 	int now = 0, target;
 	int num_draw = 0;
 	bool redraw;	

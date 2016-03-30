@@ -1,109 +1,652 @@
 mkdir -p obj/kernel/
-gcc -Wall -Werror -Wfatal-errors  -MD  -std=gnu11 -m32 -c  -I .  -O0  -fno-builtin  -ggdb3  -fno-stack-protector kernel/main.c -o obj/kernel/main.o
-ld -m elf_i386 -T kernel/kernel.ld -nostdlib -o kernel.bin obj/kernel/syscall/do_syscall.o obj/kernel/main.o obj/kernel/entrypgdir.o obj/kernel/irq/idt.o obj/kernel/irq/i8259.o obj/kernel/irq/irq_handle.o obj/kernel/device/logo.o obj/kernel/device/timer.o obj/kernel/device/palette.o obj/kernel/device/font.o obj/kernel/device/video.o obj/kernel/device/serial.o obj/kernel/irq/do_irq.o obj/kernel/entry.o obj/lib/abort.o obj/lib/keyboard.o obj/lib/printk.o obj/lib/random.o obj/lib/string.o kernel/kernel.ld /usr/lib/gcc/x86_64-linux-gnu/4.8/32/libgcc.a
+gcc -Werror -Wfatal-errors  -MD  -std=gnu11 -m32 -c  -I .  -O0  -fno-builtin  -ggdb3  -fno-stack-protector kernel/pmapjos.c -o obj/kernel/pmapjos.o
+ld -m elf_i386 -T kernel/kernel.ld -nostdlib -o kernel.bin obj/kernel/syscall/do_syscall.o obj/kernel/pmapjos.o obj/kernel/main.o obj/kernel/entrypgdir.o obj/kernel/irq/idt.o obj/kernel/irq/i8259.o obj/kernel/irq/irq_handle.o obj/kernel/device/logo.o obj/kernel/device/timer.o obj/kernel/device/palette.o obj/kernel/device/font.o obj/kernel/device/video.o obj/kernel/device/serial.o obj/kernel/irq/do_irq.o obj/kernel/entry.o obj/lib/abort.o obj/lib/keyboard.o obj/lib/printk.o obj/lib/random.o obj/lib/string.o kernel/kernel.ld /usr/lib/gcc/x86_64-linux-gnu/4.8/32/libgcc.a
 perl kernel/genkern.pl kernel.bin	
-ld -m elf_i386 -T game/game.ld -nostdlib -o game.bin obj/game/game.o obj/game/effect.o obj/kernel/syscall/do_syscall.o obj/kernel/main.o obj/kernel/entrypgdir.o obj/kernel/irq/idt.o obj/kernel/irq/i8259.o obj/kernel/irq/irq_handle.o obj/kernel/device/logo.o obj/kernel/device/timer.o obj/kernel/device/palette.o obj/kernel/device/font.o obj/kernel/device/video.o obj/kernel/device/serial.o obj/kernel/irq/do_irq.o obj/kernel/entry.o obj/lib/abort.o obj/lib/keyboard.o obj/lib/printk.o obj/lib/random.o obj/lib/string.o game/game.ld /usr/lib/gcc/x86_64-linux-gnu/4.8/32/libgcc.a
+ld -m elf_i386 -T game/game.ld -nostdlib -o game.bin obj/game/game.o obj/game/effect.o obj/kernel/syscall/do_syscall.o obj/kernel/pmapjos.o obj/kernel/main.o obj/kernel/entrypgdir.o obj/kernel/irq/idt.o obj/kernel/irq/i8259.o obj/kernel/irq/irq_handle.o obj/kernel/device/logo.o obj/kernel/device/timer.o obj/kernel/device/palette.o obj/kernel/device/font.o obj/kernel/device/video.o obj/kernel/device/serial.o obj/kernel/irq/do_irq.o obj/kernel/entry.o obj/lib/abort.o obj/lib/keyboard.o obj/lib/printk.o obj/lib/random.o obj/lib/string.o game/game.ld /usr/lib/gcc/x86_64-linux-gnu/4.8/32/libgcc.a
 qemu-system-i386 -serial stdio  -monitor telnet:127.0.0.1:1111,server,nowait  disk.bin
-pte	c0104000
-103023										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-								103023		
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-c0103000
-find elf!
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+pages	c0138000
+c0138ac8	
+Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
