@@ -30,23 +30,24 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
+boot_map_region
+33 pages
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
+boot_map_region
+8 pages
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
+boot_map_region
+262144 pages
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -80,11 +81,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -118,11 +114,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -156,11 +147,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -194,11 +180,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -232,11 +213,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -270,11 +246,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -308,11 +279,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -346,11 +312,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -384,11 +345,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -422,11 +378,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -460,11 +411,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -498,11 +444,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -536,11 +477,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -574,11 +510,6 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
@@ -612,11 +543,240 @@ pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008
-entrypgdir c0106000
-Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
-pages	c0138000
-c0138ac8	
-Hi1000
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
+pagealloc!1
+pagepa c0001000
+pagealloc ans c0138008
 pagealloc!1
 pagepa c0001000
 pagealloc ans c0138008

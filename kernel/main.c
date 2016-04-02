@@ -68,7 +68,7 @@ void game_init(void) {
 	mem_init();
 	printk("hello!\n");
 	//assert(0);
-	enable_interrupt();
+	//enable_interrupt();
 	//while(1);
 	uint32_t eip = loader();
 
