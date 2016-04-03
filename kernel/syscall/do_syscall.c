@@ -10,7 +10,7 @@ static inline void sysout_byte(uint16_t port,int8_t data);
 
 void do_syscall(struct TrapFrame *tf){	
 	switch(tf->ebx){
-		case 0x100: //serial in
+		case 0x100: //serial in	
 			tf->eax = sysin_byte(tf->edx);
 			break;
 		case 0x101: //serial out

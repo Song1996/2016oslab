@@ -10,6 +10,7 @@
 //#include "./include/memlayout.h"
 //#include "./include/pmap.h"
 #define SECTSIZE 512
+#define ELF_PROG_LOAD 1
 
 void printk_test(void);
 uint32_t loader();
@@ -20,7 +21,9 @@ typedef uint32_t* pte_t;
 extern pde_t entry_pgdir[];
 extern pte_t entry_pgtable[];
 extern void* pageinsert(pde_t*pgdir,const void* va,int create);
+extern pde_t *kern_pgdir;
 void mem_init(void);
+void region_alloc(pde_t*,void*,size_t);
 
 static inline int 
 in_long(short port) {
@@ -48,31 +51,20 @@ void game_init(void) {
 	init_intr();	
 	//enable_interrupt();	
 	printk("entrypgdir %x\n",entry_pgdir);
+	//while(1);
 	//set_timer_intr_handler(timer_event);
 	//set_keyboard_intr_handler(keyboard_event);	
-	
 	//printk_test();
 	//main_loop();
 	//assert(0);
-	//page_init();	
-	/*printk("pte	%x\n",entry_pgdir);
-	for(int k=0;k<100;k++){
-	for(int i=0;i<10;i++){
-		printk("%x	",entry_pgdir[i+k*10]);
-	}
-		printk("\n");
-	}
-	if((unsigned)entry_pgtable==0x103020)printk("helll!\n");
-	else printk("%x\n",entry_pgtable);*/
-	
 	mem_init();
 	printk("hello!\n");
-	//assert(0);
-	//enable_interrupt();
+	//enable_interrupt();	
 	//while(1);
 	uint32_t eip = loader();
-
+	printk("loader complete\n");
 	((void(*)(void))eip)();
+	printk("loader fail\n");
 	while(1);
 	assert(0); /* main_loop是死循环，永远无法返回这里 */
 }
@@ -88,22 +80,24 @@ uint32_t loader(void){
 	assert(*(unsigned*)elf == elf_magic);
 	printk("find elf!\n");
 	int j=0;
-	printk("%d\n",elf->phnum);
+	//printk("%d\n",elf->phnum);
 	for(;j<elf->phnum;j++){
-		printk("%d\n",j);
-		
+		//printk("%d\n",j);	
 		ph=(void*)buf+elf->phoff+j*elf->phentsize;
-		//if(ph->type==PT_LOAD){
-		printk("%d\n",ph->memsz);	
-		for(int k=0;k<(ph->memsz/4096);k++){
+		if(ph->type==ELF_PROG_LOAD){
+			//printk("%d\n",ph->memsz);	
+		/*for(int k=0;k<(ph->memsz/4096);k++){
 			printk("insert %x\n",ph->vaddr);
 			pageinsert(entry_pgdir,(void*)ph->vaddr+k*4096,1);
-		}
-		
-		readseg((unsigned char*)ph->vaddr,ph->filesz,102400+ph->off);
-		assert(0);
+		}*/
+			printk("%x  %x\n",ph->vaddr,ph->memsz);
+			//while(1);
+			region_alloc(kern_pgdir,(void*)ph->vaddr,ph->memsz);		
+			//while(1);
+			//kern_pgdir[PDX(ph->vaddr)]
+			readseg((unsigned char*)ph->vaddr,ph->filesz,102400+ph->off);
 			memset((void*)(ph->vaddr+ph->filesz),0,ph->memsz-ph->filesz);
-		//}
+		}
 	}
 	volatile uint32_t entry = elf->entry;	
 	return entry;

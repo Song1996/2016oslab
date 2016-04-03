@@ -37,7 +37,7 @@ irq_handle(struct TrapFrame *tf) {
 			case 13:
 				printk("irq 13\n");
 				printk("%x %x %x %x",tf->eax,tf->ebx,tf->ecx,tf->ecx);
-				assert(0);
+				//assert(0);
 				break;
 			default:
 				printk("unhandled exception!   %d\n", tf->irq);
@@ -46,14 +46,14 @@ irq_handle(struct TrapFrame *tf) {
 	
 
 	} else if (tf->irq == 1000) {	
-		do_timer();
+		//do_timer();
 	} else if (tf->irq == 1001) {
-		uint32_t code = in_byte(0x60);
+		/*uint32_t code = in_byte(0x60);
 		uint32_t val = in_byte(0x61);
 		out_byte(0x61, val | 0x80);
 		out_byte(0x61, val);
 		printk("%s, %d: key code = %x\n", __FUNCTION__, __LINE__, code);
-		do_keyboard(code);
+		do_keyboard(code);*/
 	} else {
 		assert(0);
 	}
