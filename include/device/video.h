@@ -13,13 +13,13 @@
 #define VMEM_ADDR  ((uint8_t*)0xA0000)
 
 extern uint8_t *vmem;
-
+/*
 static inline void
 draw_pixel(int x, int y, int color) {
 	assert(x >= 0 && y >= 0 && x < SCR_HEIGHT && y < SCR_WIDTH);
 	vmem[(x << 8) + (x << 6) + y] = color;
 }
-
+*/
 void prepare_buffer(void);
 void display_buffer(void);
 void draw_block(int,int,int);

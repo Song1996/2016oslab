@@ -114,15 +114,15 @@ mem_init(void)
 				0xc0000000,
 				0xc0400000-0xc0000000,
 				0x0,PTE_W|PTE_U);
-	boot_map_region(kern_pgdir,
+	/*boot_map_region(kern_pgdir,
 				0x0,
 				0x00400000,
-				0x0,PTE_W|PTE_U);
-	/*boot_map_region(kern_pgdir,
-				0x0A0000,
-				0x100000-0x0A0000,
-				0x0A0000,PTE_W|PTE_U);
-	*/
+				0x0,PTE_W|PTE_U);*/
+	boot_map_region(kern_pgdir,
+				0x00000,
+				0x100000,
+				0x00000,PTE_W|PTE_U);
+	
 	printk("ready to cr3?\n");
 	lcr3(PADDR(kern_pgdir));
 

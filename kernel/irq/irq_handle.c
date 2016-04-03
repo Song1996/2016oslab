@@ -1,8 +1,15 @@
 #include "include/x86/x86.h"
 #include "include/game.h"
+#define NR_IRQ_HANDLER 32
 
 static void (*do_timer)(void);
 static void (*do_keyboard)(int);
+void (*handler_pool[NR_IRQ_HANDLER])(void);
+
+void add_irq_handler(int irq,void(*func)(void)){
+	handler_pool[irq] = func; 
+}
+
 
 void
 set_timer_intr_handler( void (*ptr)(void) ) {
@@ -46,14 +53,16 @@ irq_handle(struct TrapFrame *tf) {
 	
 
 	} else if (tf->irq == 1000) {	
+		handler_pool[0]();
 		//do_timer();
 	} else if (tf->irq == 1001) {
-		/*uint32_t code = in_byte(0x60);
+		uint32_t code = in_byte(0x60);
 		uint32_t val = in_byte(0x61);
 		out_byte(0x61, val | 0x80);
 		out_byte(0x61, val);
 		printk("%s, %d: key code = %x\n", __FUNCTION__, __LINE__, code);
-		do_keyboard(code);*/
+		handler_pool[1]();
+		//do_keyboard(code);
 	} else {
 		assert(0);
 	}

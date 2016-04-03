@@ -1,0 +1,46 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CHARACTER_PER_SECOND	game.c	8;"	d	file:
+COLNUM	effect.c	9;"	d	file:
+DIRED	effect.c	15;"	d	file:
+DIREL	effect.c	12;"	d	file:
+DIRENUM	effect.c	11;"	d	file:
+DIRER	effect.c	13;"	d	file:
+DIREU	effect.c	14;"	d	file:
+EMPTY	effect.c	18;"	d	file:
+FOOD	effect.c	16;"	d	file:
+FOOD_PER_TENSECOND	game.c	11;"	d	file:
+FPS	game.c	7;"	d	file:
+ROWNUM	effect.c	10;"	d	file:
+SNAKE	effect.c	17;"	d	file:
+UPDATERATE	game.c	6;"	d	file:
+UPDATE_PER_SECOND	game.c	9;"	d	file:
+create_new_food	effect.c	/^create_new_food(void) {$/;"	f
+direction	effect.c	/^	int direction;$/;"	m	struct:snakenode	file:
+draw_gg	effect.c	/^void draw_gg(){$/;"	f
+gamepool	effect.c	/^static int gamepool [ROWNUM][COLNUM];$/;"	v	file:
+get_fps	game.c	/^get_fps() {$/;"	f
+get_ggflag	effect.c	/^get_ggflag(void) {$/;"	f
+get_len	effect.c	/^get_len(void) {$/;"	f
+ggflag	effect.c	/^static bool ggflag = FALSE;$/;"	v	file:
+main_loop	game.c	/^main_loop(void) {$/;"	f
+querysys_blank	game.c	/^static bool querysys_blank(){$/;"	f	file:
+querysys_direkey	effect.c	/^static inline bool querysys_direkey(uint32_t direkey){$/;"	f	file:
+real_fps	game.c	/^static int real_fps;$/;"	v	file:
+redraw_screen	effect.c	/^redraw_screen() {$/;"	f
+set_fps	game.c	/^set_fps(int value) {$/;"	f
+show_logo	effect.c	/^void show_logo(){$/;"	f
+snake	effect.c	/^static struct snakenode snake[ COLNUM * ROWNUM ];$/;"	v	typeref:struct:snakenode	file:
+snakelen	effect.c	/^static int snakelen ;$/;"	v	file:
+snakenode	effect.c	/^struct snakenode {$/;"	s	file:
+tick	game.c	/^volatile int tick = 0;$/;"	v
+timer_event	game.c	/^timer_event(void) {$/;"	f
+update_keypress	effect.c	/^update_keypress(void) {$/;"	f
+update_snake_pos	effect.c	/^update_snake_pos(void) {$/;"	f
+used	effect.c	/^	bool used;$/;"	m	struct:snakenode	file:
+x	effect.c	/^	int x,y;$/;"	m	struct:snakenode	file:
+y	effect.c	/^	int x,y;$/;"	m	struct:snakenode	file:

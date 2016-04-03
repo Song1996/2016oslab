@@ -222,7 +222,8 @@ void show_logo(){
 	prepare_buffer();
 	draw_logo();
 	draw_string("press Space",SCR_HEIGHT/2+80,SCR_WIDTH/2-45,14);
-	asm volatile("int $0x80": : "b"(0x102));	
+	//asm volatile("int $0x80": : "b"(0x102));	
+	display_buffer();
 }
 
 

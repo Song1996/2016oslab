@@ -42,7 +42,7 @@ OBJ_GAME_DIR   := $(OBJ_DIR)/$(GAME_DIR)
 LD_SCRIPT := $(shell find $(KERNEL_DIR) -name "*.ld")
 LD_GAMESCR := $(shell find $(GAME_DIR) -name "*.ld")
 
-LIB_C := $(wildcard $(LIB_DIR)/*.c)
+LIB_C := $(shell find $(LIB_DIR) -name "*.c")
 LIB_O := $(LIB_C:%.c=$(OBJ_DIR)/%.o)
 
 BOOT_S := $(wildcard $(BOOT_DIR)/*.S)
@@ -87,11 +87,11 @@ $(KERNEL): $(KERNEL_O)  $(LIB_O)
 	perl kernel/genkern.pl $@	
 
 $(GAME): $(LD_GAMESCR)
-$(GAME): $(GAME_O) $(KERNEL_O) $(LIB_O)
+$(GAME): $(GAME_O)  $(LIB_O)
 	$(LD) -m elf_i386 -T $(LD_GAMESCR) -nostdlib -o $@ $^ $(shell $(CC) $(CFLAGS) -print-libgcc-file-name)
 
 $(OBJ_LIB_DIR)/%.o : $(LIB_DIR)/%.c
-	@mkdir -p $(OBJ_LIB_DIR)
+	@mkdir -p $(OBJ_DIR)/$(dir $<)
 	$(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_KERNEL_DIR)/%.o: $(KERNEL_DIR)/%.[cS]

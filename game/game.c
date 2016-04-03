@@ -17,6 +17,7 @@ void
 timer_event(void) {
 	tick ++;
 }
+void keyboard_event(int code);
 
 static int real_fps;
 void
@@ -44,6 +45,9 @@ get_fps() {
  * 这些机制的实现在device/video.c中。
  * */
 
+static void add_irq_handle(int irq,void* handler){
+	asm volatile("int $0x80" : : "b"(0x0) , "c"(irq),"d"(handler));
+}
 
 
 static bool querysys_blank(){
@@ -52,14 +56,32 @@ static bool querysys_blank(){
 	return flag;
 }
 
+
+uint8_t vmbuf[320*200];
+
+void blue_creen(){
+	memset(vmbuf, 1, 320*200);
+    printk("vmbuf add: 0x%x, VM addr: 0x%x\n", &vmbuf,0xa0000);
+	//memmove((void *) 0xa0000, vmbuf, 320*200);
+	uint8_t* vmem = (void*)0xa0000;
+	for(int i=0;i<320*200;i++)
+		vmem[i]=1;
+}
+
 void
 main_loop(void) {
 	printk("game hello world!\n");
+	add_irq_handle(0,timer_event);
+	add_irq_handle(1,keyboard_event);
+	enable_interrupt();
 	int now = 0, target;
 	int num_draw = 0;
 	bool redraw;	
+	blue_creen();
+//while(1);
 	while(update_keypress());	
 	show_logo();
+	while(1);
 	while(!querysys_blank());
 	now=tick;
 	while (TRUE) {

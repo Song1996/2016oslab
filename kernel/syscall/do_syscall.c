@@ -6,10 +6,17 @@
 
 static inline uint8_t sysin_byte(uint16_t port);
 static inline void sysout_byte(uint16_t port,int8_t data);
-
+void add_irq_handler(int irq,void(*func)(void));
+typedef void(*handler)(void);
 
 void do_syscall(struct TrapFrame *tf){	
 	switch(tf->ebx){
+		case 0x0:
+			disable_interrupt();
+			//printk("we can add irq here\n");
+			add_irq_handler(tf->ecx,(handler)tf->edx);
+			enable_interrupt();
+			break;
 		case 0x100: //serial in	
 			tf->eax = sysin_byte(tf->edx);
 			break;
@@ -17,6 +24,7 @@ void do_syscall(struct TrapFrame *tf){
 			sysout_byte(tf->edx,tf->eax);
 			break;
 		case 0x102: //display	
+			//printk("display_buffer");
 			display_buffer();	
 			break;
 		case 0x103: //halt
