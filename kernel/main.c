@@ -71,8 +71,7 @@ void game_init(void) {
 
 uint32_t loader(void){
 	struct ELFHeader *elf;
-	struct ProgramHeader *ph, *eph;
-	unsigned char* pa, *i;
+	struct ProgramHeader *ph;
 	uint8_t buf[4096];
 	elf=(struct ELFHeader*)buf;
 	readseg((unsigned char*)buf,4096,102400);

@@ -29,16 +29,7 @@ prepare_buffer(void) {
 
 void
 display_buffer(void) {
-	printk("display\n");
-	uint8_t* vmem = (void*)0xa0000;
-	printk("%x\n",vbuf);
-	for(int i=0;i<320*200;i++){
-		//printk("%d ",vbuf[i]);
-		vmem[i]=vbuf[i];
-	}
-	/*for(int i=0;i<200*320;i++){
-		  printk("%d ",vbuf[i]);
-	}*/
+	asm volatile("int $0x80" : :"b"(0x102),"c"(vbuf));
 }
 
 void
@@ -77,22 +68,9 @@ void
 draw_logo(){
 	printk("draw_logo\n");
 	int i,j;
-	printk("%x\n",vmem);
-	printk("%x\n",vbuf);
-	/*for(int i=0;i<320*200;i++)
-	  vbuf[i]=1;*/
-	/*uint8_t* temp = (void*)0xa0000;
-	for(int i=0;i<320*200;i++)
-		temp[i]=vbuf[i];*/
-	/*for(int i=0;i<320*200;i++)
-	  printk("%x ",vbuf[i]);*/
 	for(i=0;i<150;i++)
 		for(j=0;j<200;j++){
 			draw_pixel(25+i,60+j,logo[i*200+j]);	
-			//printk("%d ",logo[i*200+j]);
 		}
-	//printk("\n");
-	//for(int i=0;i<320*200;i++)
-	  //printk("%d ",vbuf[i]);
 }
 

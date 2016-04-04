@@ -4,14 +4,12 @@
 static inline uint8_t
 in_byte(uint16_t port){
 	uint8_t data;
-	uint32_t sysnum = 0x100;
 	asm volatile ("in %1,%0" : "=a"(data) : "d"(port));
 	return data;
 }
 
 static inline void
 out_byte(uint16_t port,int8_t data){
-	uint32_t sysnum=0x101;
 	asm volatile("out %%al,%%dx" : : "a"(data),"d"(port));
 }
 

@@ -69,12 +69,8 @@ main_loop(void) {
 	enable_interrupt();
 	int now = 0, target;
 	int num_draw = 0;
-	bool redraw;	
-	//blue_creen();
-//while(1);
-	while(update_keypress());	
+	bool redraw;		
 	show_logo();
-	//while(1);
 	while(!query_blank());
 	now=tick;
 	printk("detect blank\n");

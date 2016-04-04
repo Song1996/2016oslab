@@ -63,7 +63,6 @@ static void *
 boot_alloc(uint32_t n)
 {
 	static char *nextfree;	// virtual address of next byte of free memory
-	char *result;
 	if (!nextfree) {
 		extern char end[];
 		nextfree = ROUNDUP((char *) end, PGSIZE);
@@ -77,8 +76,7 @@ boot_alloc(uint32_t n)
 void
 mem_init(void)
 {
-	uint32_t cr0;
-	size_t n;
+	uint32_t cr0;	
 
 	i386_detect_memory();
 
@@ -343,7 +341,6 @@ boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm
 	uintptr_t va_next = va;
 	physaddr_t pa_next = pa;
 	pte_t* pte;
-	physaddr_t pa_check;
 	uint32_t np = size/PGSIZE;
 	//printk("%d pages\n",np);
 	uint32_t i = 0;
@@ -390,7 +387,6 @@ page_insert(pde_t *pgdir, struct PageInfo *pp, void *va, int perm)
 	//printk("page_insert\n");
 	
 	pte_t *pte = pgdir_walk(pgdir,va,0);
-	physaddr_t ppa = page2pa(pp);
 	//printk("insert	pte %x\n",pte);
 	if(pte!=NULL){
 		if(*pte & PTE_P)
@@ -408,20 +404,6 @@ page_insert(pde_t *pgdir, struct PageInfo *pp, void *va, int perm)
 	pp->pp_ref++;
 	tlb_invalidate(pgdir,va);
 	return 0;
-	/*pte_t* pte;
-	struct PageInfo* pg=page_lookup(pgdir,va,NULL);
-	if(pg==pp){
-		pte=pgdir_walk(pgdir,va,1);
-		pte[0]=page2pa(pp)|perm|PTE_P;
-		return 0;
-	} else if(pg!=NULL)
-		page_remove(pgdir,va);
-	pte=pgdir_walk(pgdir,va,1);
-	if(pte==NULL)
-	  return -E_NO_MEM;
-	pte[0]=page2pa(pp)|perm|PTE_P;
-	pp->pp_ref++;
-	return 0;*/
 }
 
 //
