@@ -87,7 +87,7 @@ $(KERNEL): $(KERNEL_O)  $(LIB_O)
 	perl kernel/genkern.pl $@	
 
 $(GAME): $(LD_GAMESCR)
-$(GAME): $(GAME_O)  $(LIB_O)
+$(GAME): $(GAME_O) $(LIB_O)
 	$(LD) -m elf_i386 -T $(LD_GAMESCR) -nostdlib -o $@ $^ $(shell $(CC) $(CFLAGS) -print-libgcc-file-name)
 
 $(OBJ_LIB_DIR)/%.o : $(LIB_DIR)/%.c

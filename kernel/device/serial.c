@@ -12,7 +12,7 @@ init_serial(void) {
 	out_byte(SERIAL_PORT + 2, 0xC7);
 	out_byte(SERIAL_PORT + 4, 0x0B);
 }
-
+/*
 static inline int
 serial_idle(void) {
 	return (in_byte(SERIAL_PORT + 5) & 0x20) != 0;
@@ -22,4 +22,4 @@ void
 serial_printc(char ch) {
 	while (serial_idle() != TRUE);
 	out_byte(SERIAL_PORT, ch);
-}
+}*/

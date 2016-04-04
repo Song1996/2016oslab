@@ -1,6 +1,21 @@
 #include "include/common.h"
 #include "include/nstring.h"
 
+static inline uint8_t
+in_byte(uint16_t port){
+	uint8_t data;
+	uint32_t sysnum = 0x100;
+	asm volatile ("in %1,%0" : "=a"(data) : "d"(port));
+	return data;
+}
+
+static inline void
+out_byte(uint16_t port,int8_t data){
+	uint32_t sysnum=0x101;
+	asm volatile("out %%al,%%dx" : : "a"(data),"d"(port));
+}
+
+
 /* a-z对应的键盘扫描码 */
 static int letter_code[] = {
 	30, 48, 46, 32, 18, 33, 34, 35, 23, 36,
@@ -60,7 +75,12 @@ int last_key_code(void) {
 }
 
 void
-keyboard_event(int code) {
+keyboard_event() {
+	uint32_t code = in_byte(0x60);
+	uint32_t val = in_byte(0x61);
+	out_byte(0x61,val | 0x80);
+	out_byte(0x61,val);
+	printk("%s,%d: key code =%x\n",__FUNCTION__,__LINE__,code);
 	key_code = code;
 	press_key(code);
 }

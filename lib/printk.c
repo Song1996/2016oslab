@@ -1,6 +1,21 @@
 #include "./include/common.h"
 
 /* implement this function to support printk */
+static inline uint8_t
+in_byte(uint16_t port){
+	uint8_t data;
+	uint32_t sysnum = 0x100;
+	asm volatile ("in %1,%0" : "=a"(data) : "d"(port));
+	return data;
+}
+
+static inline void
+out_byte(uint16_t port,int8_t data){
+	uint32_t sysnum=0x101;
+	asm volatile("out %%al,%%dx" : : "a"(data),"d"(port));
+}
+
+
 void vfprintf(void (*printer)(char), const char *ctl, void **args) {	
 	const char* str = ctl;
 	char numchar[12];
@@ -71,4 +86,17 @@ void __attribute__((__noinline__))
 printk(const char *ctl, ...) {
 	void **args = (void **)&ctl + 1;
 	vfprintf(serial_printc, ctl, args);
+}
+
+#define SERIAL_PORT  0x3F8
+
+static inline int
+serial_idle(void) {
+	return (in_byte(SERIAL_PORT + 5) & 0x20) != 0;
+}
+
+void
+serial_printc(char ch) {
+	while (serial_idle() != TRUE);
+	out_byte(SERIAL_PORT, ch);
 }

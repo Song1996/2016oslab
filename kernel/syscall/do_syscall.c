@@ -23,19 +23,13 @@ void do_syscall(struct TrapFrame *tf){
 		case 0x101: //serial out
 			sysout_byte(tf->edx,tf->eax);
 			break;
-		case 0x102: //display	
-			//printk("display_buffer");
-			display_buffer();	
-			break;
 		case 0x103: //halt
 			printk("halt\n");
 			while(1);break;
 		case 0x104:
-			tf->eax = query_key(tf->edx);break;
-		case 0x105:
-			tf->eax = query_direkey(tf->edx);break;
+			//tf->eax = query_key(tf->edx);break;
 		case 0x106:
-			tf->eax = query_blank();break;
+			//tf->eax = query_blank();break;
 		default:
 			printk("unhandled system call : id = %d",tf->eax);
 			assert(0);

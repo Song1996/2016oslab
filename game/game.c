@@ -50,13 +50,6 @@ static void add_irq_handle(int irq,void* handler){
 }
 
 
-static bool querysys_blank(){
-	bool flag;
-	asm volatile("int $0x80" : "=a"(flag) : "b"(0x106));
-	return flag;
-}
-
-
 uint8_t vmbuf[320*200];
 
 void blue_creen(){
@@ -77,13 +70,14 @@ main_loop(void) {
 	int now = 0, target;
 	int num_draw = 0;
 	bool redraw;	
-	blue_creen();
+	//blue_creen();
 //while(1);
 	while(update_keypress());	
 	show_logo();
-	while(1);
-	while(!querysys_blank());
+	//while(1);
+	while(!query_blank());
 	now=tick;
+	printk("detect blank\n");
 	while (TRUE) {
 		wait_for_interrupt();
 		disable_interrupt();

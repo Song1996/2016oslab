@@ -134,13 +134,6 @@ update_snake_pos(void) {
 }
 
 
-static inline bool querysys_direkey(uint32_t direkey){
-	bool flag;
-	asm volatile ("int $0x80":"=a"(flag) :"b"(0x105) , "d"(direkey));
-	return flag;
-}
-
-
 
 
 /* 更新按键 */
@@ -149,7 +142,7 @@ update_keypress(void) {
 	disable_interrupt();
 	int i=0;
 	for(;i<DIRENUM;i++){
-		if(querysys_direkey(i)){
+		if(query_direkey(i)){
 			switch(i){
 			case DIREL:
 				if(snake[0].direction!=DIRER)snake[0].direction = i;
@@ -206,14 +199,13 @@ redraw_screen() {
 	draw_string(itoa(get_fps()), 0, 0, 14);
 	draw_string("FPS", 0, strlen(itoa(get_fps())) * 8, 14);
 	
-	asm volatile("int $0x80": : "b"(0x102));
-	//display_buffer(); /* 绘制缓冲区 */
+	display_buffer(); /* 绘制缓冲区 */
 }
 
 void draw_gg(){
 	prepare_buffer();
 	draw_string("Game Over",SCR_HEIGHT/2-15,SCR_WIDTH/2-35,14);
-	asm volatile("int $0x80": : "b"(0x102));
+	display_buffer();
 	asm volatile("int $0x80": : "b"(0x103));
 	printk("game over!");
 }
