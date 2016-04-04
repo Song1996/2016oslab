@@ -5,21 +5,19 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 CHECKSUM	entry.S	/^#define CHECKSUM (-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS))$/;"	d
+ELF_PROG_LOAD	main.c	13;"	d	file:
 FREQ_8253	device/timer.c	7;"	d	file:
-INTERLACE	device/video.c	16;"	d	file:
 INTERRUPT_GATE_32	irq/idt.c	3;"	d	file:
 IRQ_SLAVE	irq/i8259.c	5;"	d	file:
 MULTIBOOT_HEADER_FLAGS	entry.S	/^#define MULTIBOOT_HEADER_FLAGS (0)$/;"	d
 MULTIBOOT_HEADER_MAGIC	entry.S	/^#define MULTIBOOT_HEADER_MAGIC (0x1BADB002)$/;"	d
+NR_IRQ_HANDLER	irq/irq_handle.c	3;"	d	file:
 NR_PALETTE_ENTRY	device/palette.c	10;"	d	file:
-PARTIAL_UPDATE	device/video.c	15;"	d	file:
-PARTIAL_UPDATE	device/video.c	19;"	d	file:
 PORT_PIC_MASTER	irq/i8259.c	3;"	d	file:
 PORT_PIC_SLAVE	irq/i8259.c	4;"	d	file:
 RELOC	entry.S	/^#define	RELOC(x) ((x) - KERNBASE)$/;"	d
-SECTSIZE	main.c	10;"	d	file:
+SECTSIZE	main.c	12;"	d	file:
 SERIAL_PORT	device/serial.c	3;"	d	file:
-SLOW	device/video.c	12;"	d	file:
 SRL	entry.S	/^#define SRL(val, shamt)		(((val) >> (shamt)) & ~(-1 << (32 - (shamt))))$/;"	d
 TIMER_PORT	device/timer.c	6;"	d	file:
 TRAP_GATE_32	irq/idt.c	4;"	d	file:
@@ -27,6 +25,7 @@ VGA_DAC_DATA	device/palette.c	7;"	d	file:
 VGA_DAC_READ_INDEX	device/palette.c	5;"	d	file:
 VGA_DAC_WRITE_INDEX	device/palette.c	6;"	d	file:
 _start	entry.S	/^_start = RELOC(entry)$/;"	d
+add_irq_handler	irq/irq_handle.c	/^void add_irq_handler(int irq,void(*func)(void)){$/;"	f
 asm_do_irq	irq/do_irq.S	/^asm_do_irq:$/;"	l
 boot_alloc	pmapjos.c	/^boot_alloc(uint32_t n)$/;"	f	file:
 boot_map_region	pmapjos.c	/^boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm)$/;"	f	file:
@@ -38,27 +37,32 @@ do_syscall	syscall/do_syscall.c	/^void do_syscall(struct TrapFrame *tf){	$/;"	f
 do_timer	irq/irq_handle.c	/^static void (*do_timer)(void);$/;"	v	file:
 draw_block	device/video.c	/^draw_block(int x,int y,int color) {$/;"	f
 draw_character	device/video.c	/^draw_character(char ch, int x, int y, int color) {$/;"	f	file:
-draw_logo	device/video.c	/^draw_logo(){$/;"	f
+draw_pixel	device/video.c	/^draw_pixel(int x, int y, int color) {$/;"	f	file:
 draw_string	device/video.c	/^draw_string(const char *str, int x, int y, int color) {$/;"	f
 entry	entry.S	/^entry:$/;"	l
 entry_pgdir	entrypgdir.c	/^pde_t entry_pgdir[NPDENTRIES] = {$/;"	v
 entry_pgtable	entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES] = {$/;"	v
 entry_pgtable	entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES];$/;"	v
-font8x8_basic	device/font.c	/^char font8x8_basic[128][8] = {$/;"	v
 game_init	main.c	/^void game_init(void) {	$/;"	f
+handler	syscall/do_syscall.c	/^typedef void(*handler)(void);$/;"	t	file:
+handler_pool	irq/irq_handle.c	/^void (*handler_pool[NR_IRQ_HANDLER])(void);$/;"	v
+i386_detect_memory	pmapjos.c	/^i386_detect_memory(void)$/;"	f	file:
 idt	irq/idt.c	/^struct GateDescriptor idt[NR_IRQ];$/;"	v	typeref:struct:GateDescriptor
 in_long	main.c	/^in_long(short port) {$/;"	f	file:
+inbyte	main.c	/^inbyte(short port){$/;"	f	file:
 init_idt	irq/idt.c	/^void init_idt() {$/;"	f
 init_intr	irq/i8259.c	/^init_intr(void) {$/;"	f
 init_serial	device/serial.c	/^init_serial(void) {$/;"	f
 init_timer	device/timer.c	/^init_timer(void) {$/;"	f
 irq_handle	irq/irq_handle.c	/^irq_handle(struct TrapFrame *tf) {$/;"	f
 kern_pgdir	pmapjos.c	/^pde_t *kern_pgdir;		\/\/ Kernel's initial page directory$/;"	v
-loader	main.c	/^void loader(void){$/;"	f
-logo	device/logo.c	/^char logo[150*200]=$/;"	v
+loader	main.c	/^uint32_t loader(void){$/;"	f
+mc146818_read	pmapjos.c	/^unsigned mc146818_read(unsigned reg){$/;"	f
 mem_init	pmapjos.c	/^mem_init(void)$/;"	f
 npages	pmapjos.c	/^size_t npages=1<<15;			\/\/ Amount of physical memory (in pages)$/;"	v
 npages_basemem	pmapjos.c	/^static size_t npages_basemem;	\/\/ Amount of base memory (in pages)$/;"	v	file:
+nvram_read	pmapjos.c	/^nvram_read(int r)$/;"	f	file:
+outbyte	main.c	/^outbyte(short port,char data){$/;"	f	file:
 page_alloc	pmapjos.c	/^page_alloc(int alloc_flags)$/;"	f
 page_decref	pmapjos.c	/^page_decref(struct PageInfo* pp)$/;"	f
 page_free	pmapjos.c	/^page_free(struct PageInfo *pp)$/;"	f
@@ -77,9 +81,8 @@ pte_t	main.c	/^typedef uint32_t* pte_t;$/;"	t	file:
 read_palette	device/palette.c	/^void read_palette() {$/;"	f
 readsect	main.c	/^readsect(void *dst, int offset) {$/;"	f
 readseg	main.c	/^readseg(unsigned char *pa, int count, int offset) {$/;"	f
+region_alloc	pmapjos.c	/^void region_alloc(pde_t* pgdir, void *va,size_t len){$/;"	f
 relocated	entry.S	/^relocated:$/;"	l
-serial_idle	device/serial.c	/^serial_idle(void) {$/;"	f	file:
-serial_printc	device/serial.c	/^serial_printc(char ch) {$/;"	f
 set_intr	irq/idt.c	/^set_intr(struct GateDescriptor *ptr, uint32_t selector, uint32_t offset, uint32_t dpl) {$/;"	f	file:
 set_keyboard_intr_handler	irq/irq_handle.c	/^set_keyboard_intr_handler( void (*ptr)(int) ) {$/;"	f
 set_timer_intr_handler	irq/irq_handle.c	/^set_timer_intr_handler( void (*ptr)(void) ) {$/;"	f
@@ -89,9 +92,9 @@ sysin_byte	irq/irq_handle.c	/^static inline uint8_t sysin_byte(uint16_t port){$/
 sysin_byte	syscall/do_syscall.c	/^static inline uint8_t sysin_byte(uint16_t port){$/;"	f	file:
 sysout_byte	irq/irq_handle.c	/^static inline void sysout_byte(uint16_t port,int8_t data){$/;"	f	file:
 sysout_byte	syscall/do_syscall.c	/^static inline void sysout_byte(uint16_t port,int8_t data){$/;"	f	file:
-tlb_invalidate	pmapjos.c	/^tlb_invalidate(pde_t *pgdir, void *va)$/;"	f
+tlb_invalidate	pmapjos.c	/^tlb_invalidate(pde_t *pgdir, void *va){	$/;"	f
+ucr3	pmapjos.c	/^pte_t* ucr3;$/;"	v
 vbuf	device/video.c	/^static uint8_t vbuf[SCR_SIZE];$/;"	v	file:
 vmem	device/video.c	/^uint8_t *vmem = VMEM_ADDR;$/;"	v
-vref	device/video.c	/^static uint8_t vref[SCR_SIZE];$/;"	v	file:
 waitdisk	main.c	/^waitdisk(void) {$/;"	f
 write_palette	device/palette.c	/^void write_palette() {$/;"	f

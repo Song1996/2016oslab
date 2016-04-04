@@ -151,10 +151,7 @@ page_init(void)
 	printk("pageinit %x\n",page_free_list);
 	printk(" the start page %x\n",pa2page((physaddr_t)(end-0xc0000000+PGSIZE+npages*sizeof(struct PageInfo))) );
 	printk(" the end page %x\n",&pages[npages-1]);
-	size_t i = npages-1;
-
-
-	//for (i = npages-1; i >= 1; i--) {	
+	size_t i = npages-1;	
 	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo))) ){	
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
@@ -180,12 +177,10 @@ struct PageInfo *
 page_alloc(int alloc_flags)
 {
 	// Fill this function in
-	//printk("pagealloc\n");
 	if(page_free_list==NULL)
 	  return NULL;
 	struct PageInfo* ans=page_free_list;
 	page_free_list=page_free_list->pp_link;
-	//page_free_list=ans;
 	if(alloc_flags&ALLOC_ZERO)
 	  memset(page2kva(ans),0,PGSIZE);
 	//printk("pagealloc%x\n",ans);
@@ -213,7 +208,7 @@ page_free(struct PageInfo *pp)
 void
 page_decref(struct PageInfo* pp)
 {
-	if (--pp->pp_ref == 0)
+	if (--(pp->pp_ref) == 0)
 		page_free(pp);
 }
 
@@ -361,10 +356,10 @@ page_lookup(pde_t *pgdir, void *va, pte_t **pte_store)
 	pte_t* pte=pgdir_walk(pgdir,va,0);
 	if(pte==NULL)
 	  return NULL;
-	if(pte_store!=0)
+	if(pte_store!=NULL)
 	  *pte_store=pte;
-	if(pte[0]!=(pte_t)NULL)
-	  return pa2page(PTE_ADDR(pte[0]));
+	if(*pte!=(pte_t)NULL)
+	  return pa2page(PTE_ADDR(*pte));
 	else
 		return NULL;
 }
@@ -393,7 +388,7 @@ page_remove(pde_t *pgdir, void *va)
 	struct PageInfo* page=page_lookup(pgdir,va,&pte);
 	if(page!=NULL)
 	  page_decref(page);
-	pte[0]=0;
+	*pte=0;
 	tlb_invalidate(pgdir,va);
 }
 

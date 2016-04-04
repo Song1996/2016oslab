@@ -49,18 +49,9 @@ void game_init(void) {
 	init_serial();
 	init_timer();
 	init_intr();	
-	//enable_interrupt();	
 	printk("entrypgdir %x\n",entry_pgdir);
-	//while(1);
-	//set_timer_intr_handler(timer_event);
-	//set_keyboard_intr_handler(keyboard_event);	
-	//printk_test();
-	//main_loop();
-	//assert(0);
 	mem_init();
 	printk("hello!\n");
-	//enable_interrupt();	
-	//while(1);
 	uint32_t eip = loader();
 	printk("loader complete\n");
 	((void(*)(void))eip)();
@@ -79,21 +70,11 @@ uint32_t loader(void){
 	assert(*(unsigned*)elf == elf_magic);
 	printk("find elf!\n");
 	int j=0;
-	//printk("%d\n",elf->phnum);
 	for(;j<elf->phnum;j++){
-		//printk("%d\n",j);	
 		ph=(void*)buf+elf->phoff+j*elf->phentsize;
 		if(ph->type==ELF_PROG_LOAD){
-			//printk("%d\n",ph->memsz);	
-		/*for(int k=0;k<(ph->memsz/4096);k++){
-			printk("insert %x\n",ph->vaddr);
-			pageinsert(entry_pgdir,(void*)ph->vaddr+k*4096,1);
-		}*/
 			printk("%x  %x\n",ph->vaddr,ph->memsz);
-			//while(1);
 			region_alloc(kern_pgdir,(void*)ph->vaddr,ph->memsz);		
-			//while(1);
-			//kern_pgdir[PDX(ph->vaddr)]
 			readseg((unsigned char*)ph->vaddr,ph->filesz,102400+ph->off);
 			memset((void*)(ph->vaddr+ph->filesz),0,ph->memsz-ph->filesz);
 		}
