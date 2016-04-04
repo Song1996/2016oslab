@@ -91,31 +91,11 @@ mem_init(void)
 	printk("pages	%x\n",pages);
 	
 	page_init();
-	
-	printk("here\n");
-	page_alloc(1);
-	/*struct PageInfo *pp1,*pp2,*pp;
-	struct PageInfo **tp[2]={&pp1,&pp2};
-	for(pp=page_free_list;pp;pp=pp->pp_link){
-		int pagetype = (PDX(page2pa(pp)) >= 1024);
-		*tp[pagetype] = pp;
-		tp[pagetype] = &pp->pp_link;
-	}
-	*tp[1]=0;
-	*tp[0]=pp2;
-	page_free_list=pp1;
-	printk("Hi%x\n",page2pa(pp1));*/
-	//page_alloc(1);	
-	//extern pde_t* entry_pgdir;
 
 	boot_map_region(kern_pgdir,
 				0xc0000000,
 				0xc0400000-0xc0000000,
 				0x0,PTE_W|PTE_U);
-	/*boot_map_region(kern_pgdir,
-				0x0,
-				0x00400000,
-				0x0,PTE_W|PTE_U);*/
 	boot_map_region(kern_pgdir,
 				0x00000,
 				0x100000,
@@ -175,24 +155,13 @@ page_init(void)
 
 
 	//for (i = npages-1; i >= 1; i--) {	
-	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo))) ){
-		
+	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo))) ){	
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];
 		i--;
 	}
 	page_free_list = page_free_list -> pp_link;
-	/*extern char end[];
-	pages[1].pp_link=0;	
-	struct PageInfo* pgstart=pa2page((physaddr_t)IOPHYSMEM);
-	struct PageInfo* pgend=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo)));
-	pgend=pgend+1;
-	pgstart=pgstart-1;	
-	printk("%x	\n",pgend);
-	printk("end	%x\n",end);
-	pgstart->pp_link=pgend;*/
-
 }
 
 //
@@ -274,9 +243,8 @@ pte_t *
 pgdir_walk(pde_t *pgdir, const void *va, int create)
 {
 	// Fill this function in
-
-	pde_t * pde; //va(virtual address) point to pa(physical address)
-	pte_t * pgtable; //same as pde
+	pde_t * pde;
+	pte_t * pte;
 	struct PageInfo *pp;
 	/*if((unsigned)va==0x8048000)
 	  printk("pgdir_walk1\n");*/
@@ -285,42 +253,16 @@ pgdir_walk(pde_t *pgdir, const void *va, int create)
 /*	if((unsigned)va==0x8048000)
 	  while(1);*/
 	if(*pde & PTE_P) { 
-		pgtable = (KADDR(PTE_ADDR(*pde)));
+		pte = (KADDR(PTE_ADDR(*pde)));
 	} else {
-		//page table page not exist
-		if(!create || 
-		   !(pp = page_alloc(1)) ||
-		   !(pgtable = (pte_t*)page2kva(pp))) 
+		if(!create || !(pp = page_alloc(1)) || !(pte = (pte_t*)page2kva(pp))) 
 			return NULL;
-		    
 		pp->pp_ref++;
-		*pde = PADDR(pgtable) | PTE_P | PTE_W | PTE_U;
+		*pde = PADDR(pte) | PTE_P | PTE_W | PTE_U;
 	}
 
-	return &pgtable[PTX(va)];
+	return &pte[PTX(va)];
 }
-/*
-void*
-pageinsert(pde_t *pgdir,const void *va,int create){
-	printk("pageinsert!\n");
-	struct PageInfo* ans=NULL;
-	pte_t* pgtable = pgdir_walk(pgdir,va,create);
-	if(pgtable==NULL)
-	  return NULL;
-	if((void*)pgtable[PTX(va)]==NULL){
-		struct PageInfo* page = page_alloc(ALLOC_ZERO);
-		page->pp_ref++;
-		pgtable[PTX(va)]=page2pa(page)||PTE_P|PTE_W|PTE_U;
-		ans = page2kva(page);
-	}else{
-		ans=page2kva(pa2page(pgtable[PTX(va)]));
-	}
-	//printk("pageinsert va %x return %x\n",va,ans);
-	return ans;
-}
-*/
-
-
 
 //
 // Map [va, va+size) of virtual address space to physical [pa, pa+size)
@@ -338,21 +280,15 @@ boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm
 {
 	// Fill this function in
 	//printk("boot_map_region\n");
-	uintptr_t va_next = va;
-	physaddr_t pa_next = pa;
 	pte_t* pte;
 	uint32_t np = size/PGSIZE;
-	//printk("%d pages\n",np);
-	uint32_t i = 0;
-	do {
-		pte = pgdir_walk(pgdir,(void*)va_next,1);
-		if(!pte)
-		  return;
-		*pte = (PTE_ADDR(pa_next)|perm|PTE_P);
-		va_next += PGSIZE;
-		pa_next += PGSIZE;
-	} while(++i<np);
-
+	for(int i=0;i<np;i++){
+		pte = pgdir_walk(pgdir,(void*)va,1);
+		if(pte==NULL)printk("bootmapfail!\n");
+		*pte = (PTE_ADDR(pa)|perm|PTE_P);
+		va+=PGSIZE;
+		pa+=PGSIZE;
+	}
 }
 
 //
@@ -461,16 +397,8 @@ page_remove(pde_t *pgdir, void *va)
 	tlb_invalidate(pgdir,va);
 }
 
-//
-// Invalidate a TLB entry, but only if the page tables being
-// edited are the ones currently in use by the processor.
-//
 void
-tlb_invalidate(pde_t *pgdir, void *va)
-{
-	// Flush the entry only if we're modifying the current address space.
-	// For now, there is only one address space, so always invalidate.
-	
+tlb_invalidate(pde_t *pgdir, void *va){	
 	invlpg(va);
 }
 
