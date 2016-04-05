@@ -92,6 +92,7 @@ mem_init(void)
 				0x400000,
 				0x00000,PTE_W|PTE_U);
 	printk("ready to cr3?\n");
+	printk("kern_pgdir %x\n kernpgdir p %x\n",kern_pgdir,PADDR(kern_pgdir));
 	lcr3(PADDR(kern_pgdir));
 	printk("hellowold\n");
 	//while(1);

@@ -1,0 +1,28 @@
+qemu-system-i386 -serial stdio  -monitor telnet:127.0.0.1:1111,server,nowait  disk.bin
+entrypgdir c0106000
+Physical memory: 66556K available, base = 640K, extended = 65532K,pagenum=16639
+boot alloc 
+ result	c0121000
+ nextfree	c0122000
+boot alloc 
+ result	c0122000
+ nextfree	c0143000
+boot alloc 
+ result	c0143000
+ nextfree	c015b000
+envs start c0143000
+envs end c015afa0
+pages	c0122000
+pageinit 
+ the start page c0122ac8
+ the end page c01427f0
+the first page after page init 15b000
+ready to cr3?
+kern_pgdir c0121000
+ kernpgdir p 121000
+hellowold
+envs startc0143000
+envs endc015afa0
+loader new gdt
+find elf!
+enter snake :: loader complete

@@ -63,6 +63,7 @@ void blue_creen(){
 
 void
 main_loop(void) {
+	//while(1);
 	printk("game hello world!\n");
 	add_irq_handle(0,timer_event);
 	add_irq_handle(1,keyboard_event);

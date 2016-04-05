@@ -5,7 +5,8 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 CHECKSUM	entry.S	/^#define CHECKSUM (-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS))$/;"	d
-ELF_PROG_LOAD	main.c	13;"	d	file:
+ELF_PROG_LOAD	main.c	12;"	d	file:
+ENVGENSHIFT	env.c	10;"	d	file:
 FREQ_8253	device/timer.c	7;"	d	file:
 INTERRUPT_GATE_32	irq/idt.c	3;"	d	file:
 IRQ_SLAVE	irq/i8259.c	5;"	d	file:
@@ -16,7 +17,7 @@ NR_PALETTE_ENTRY	device/palette.c	10;"	d	file:
 PORT_PIC_MASTER	irq/i8259.c	3;"	d	file:
 PORT_PIC_SLAVE	irq/i8259.c	4;"	d	file:
 RELOC	entry.S	/^#define	RELOC(x) ((x) - KERNBASE)$/;"	d
-SECTSIZE	main.c	12;"	d	file:
+SECTSIZE	main.c	11;"	d	file:
 SERIAL_PORT	device/serial.c	3;"	d	file:
 SRL	entry.S	/^#define SRL(val, shamt)		(((val) >> (shamt)) & ~(-1 << (32 - (shamt))))$/;"	d
 TIMER_PORT	device/timer.c	6;"	d	file:
@@ -39,11 +40,21 @@ draw_block	device/video.c	/^draw_block(int x,int y,int color) {$/;"	f
 draw_character	device/video.c	/^draw_character(char ch, int x, int y, int color) {$/;"	f	file:
 draw_pixel	device/video.c	/^draw_pixel(int x, int y, int color) {$/;"	f	file:
 draw_string	device/video.c	/^draw_string(const char *str, int x, int y, int color) {$/;"	f
+enter_snake	env.c	/^pde_t* enter_snake(){$/;"	f
 entry	entry.S	/^entry:$/;"	l
 entry_pgdir	entrypgdir.c	/^pde_t entry_pgdir[NPDENTRIES] = {$/;"	v
 entry_pgtable	entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES] = {$/;"	v
 entry_pgtable	entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES];$/;"	v
+env_alloc	env.c	/^env_alloc(struct Env **newenv_store, envid_t parent_id)$/;"	f
+env_free_list	env.c	/^static struct Env *env_free_list;$/;"	v	typeref:struct:Env	file:
+env_init	env.c	/^env_init(){	$/;"	f
+env_init_percpu	env.c	/^env_init_percpu(void)$/;"	f
+env_pop_tf	env.c	/^env_pop_tf(struct Trapframe *tf)$/;"	f
+env_setup_vm	env.c	/^env_setup_vm(struct Env *e)$/;"	f	file:
+envs	env.c	/^struct Env* envs;$/;"	v	typeref:struct:Env
 game_init	main.c	/^void game_init(void) {	$/;"	f
+gdt	env.c	/^struct Segdesc gdt[] =$/;"	v	typeref:struct:Segdesc
+gdt_pd	env.c	/^struct Pseudodesc gdt_pd = {$/;"	v	typeref:struct:Pseudodesc
 handler	syscall/do_syscall.c	/^typedef void(*handler)(void);$/;"	t	file:
 handler_pool	irq/irq_handle.c	/^void (*handler_pool[NR_IRQ_HANDLER])(void);$/;"	v
 i386_detect_memory	pmapjos.c	/^i386_detect_memory(void)$/;"	f	file:
@@ -56,7 +67,7 @@ init_serial	device/serial.c	/^init_serial(void) {$/;"	f
 init_timer	device/timer.c	/^init_timer(void) {$/;"	f
 irq_handle	irq/irq_handle.c	/^irq_handle(struct TrapFrame *tf) {$/;"	f
 kern_pgdir	pmapjos.c	/^pde_t *kern_pgdir;		\/\/ Kernel's initial page directory$/;"	v
-loader	main.c	/^uint32_t loader(void){$/;"	f
+loader	main.c	/^uint32_t loader(pde_t* pgdir){$/;"	f
 mc146818_read	pmapjos.c	/^unsigned mc146818_read(unsigned reg){$/;"	f
 mem_init	pmapjos.c	/^mem_init(void)$/;"	f
 npages	pmapjos.c	/^size_t npages=1<<15;			\/\/ Amount of physical memory (in pages)$/;"	v

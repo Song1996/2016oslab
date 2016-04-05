@@ -120,7 +120,7 @@ env_setup_vm(struct Env *e)
 
 	// UVPT maps the env's own page table read-only.
 	// Permissions: kernel R, user R
-	e->env_pgdir[PDX(UVPT)] = PADDR(e->env_pgdir) | PTE_P | PTE_U;
+//	e->env_pgdir[PDX(UVPT)] = PADDR(e->env_pgdir) | PTE_P | PTE_U;
 
 	return 0;
 }
@@ -148,7 +148,7 @@ env_alloc(struct Env **newenv_store, envid_t parent_id)
 	e->env_tf.tf_ds = GD_UD | 3;
 	e->env_tf.tf_es = GD_UD | 3;
 	e->env_tf.tf_ss = GD_UD | 3;
-	e->env_tf.tf_esp = USTACKTOP;
+	e->env_tf.tf_esp = 0x8000000;//USTACKTOP;
 	e->env_tf.tf_cs = GD_UT | 3;
 	// You will set e->env_tf.tf_eip later.
 
@@ -158,6 +158,42 @@ env_alloc(struct Env **newenv_store, envid_t parent_id)
 
 	//printk("[%08x] new env %08x\n", curenv ? curenv->env_id : 0, e->env_id);
 	return 0;
+}
+
+
+uint32_t loader(pde_t* pgdir);
+void region_alloc(pde_t*,void*,size_t);
+
+void
+env_pop_tf(struct Trapframe *tf)
+{
+	__asm __volatile("movl %0,%%esp\n"
+		"\tpopal\n"
+		"\tpopl %%es\n"
+		"\tpopl %%ds\n"
+		"\taddl $0x8,%%esp\n" /* skip tf_trapno and tf_errcode */
+		"\tiret"
+		: : "g" (tf) : "memory");
+	//panic("iret failed");  /* mostly to placate the compiler */
+	printk("iret fail\n");
+	while(1);
+}
+
+
+pde_t* enter_snake(){
+	struct Env* e;
+	if(env_alloc(&e,0)!=0){
+		printk("env_alloc fail\n");
+		while(1);
+	}
+//return e->env_pgdir;
+	lcr3((uint32_t)e->env_pgdir-0xc0000000);	
+	e->env_tf.tf_eip = loader(e->env_pgdir);
+	printk("enter snake :: loader complete\n");
+	printk("eip %x\n",e->env_tf.tf_eip);
+	//((void(*)(void))e->env_tf.tf_eip)();
+	env_pop_tf(&(e->env_tf));
+	return NULL;
 }
 
 

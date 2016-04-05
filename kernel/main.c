@@ -25,7 +25,7 @@ void env_init(void);
 void mem_init(void);
 void region_alloc(pde_t*,void*,size_t);
 int env_alloc(void* newenv_store, int32_t parent_id);
-
+pde_t* enter_snake();
 
 static inline int 
 in_long(short port) {
@@ -54,9 +54,14 @@ void game_init(void) {
 	printk("entrypgdir %x\n",entry_pgdir);
 	mem_init();
 	env_init();
-	void *e;
-	assert(env_alloc(&e,0)==0);
-	uint32_t eip = loader();
+	pde_t* pgdir = 	enter_snake();
+	/*printk("***************************\n");
+	printk("my_pgdir %x\n",pgdir);
+	printk("kern_pgdir %x\n",tpgdir);*/
+	uint32_t tpgdir = (uint32_t)pgdir - 0xc0000000;
+	asm volatile("movl %0,%%cr3" : : "r"(tpgdir));	
+	printk("hello new pgdir\n");
+	uint32_t eip = loader(tpgdir);
 	printk("loader complete\n");
 	printk("eip	%x\n",eip);
 	printk("kernpgdir %x\n",kern_pgdir);
@@ -66,7 +71,7 @@ void game_init(void) {
 	assert(0); /* main_loop是死循环，永远无法返回这里 */
 }
 
-uint32_t loader(void){
+uint32_t loader(pde_t* pgdir){
 	struct ELFHeader *elf;
 	struct ProgramHeader *ph;
 	uint8_t buf[4096];
@@ -76,14 +81,17 @@ uint32_t loader(void){
 	assert(*(unsigned*)elf == elf_magic);
 	printk("find elf!\n");
 	int j=0;
-	for(;j<elf->phnum;j++){
+	for(;j<elf->phnum;j++){	
 		ph=(void*)buf+elf->phoff+j*elf->phentsize;
 		if(ph->type==ELF_PROG_LOAD){	
-			region_alloc(kern_pgdir,(void*)ph->vaddr,ph->memsz);		
+			region_alloc(pgdir,(void*)ph->vaddr,ph->memsz);		
 			readseg((unsigned char*)ph->vaddr,ph->filesz,102400+ph->off);
 			memset((void*)(ph->vaddr+ph->filesz),0,ph->memsz-ph->filesz);
 		}
 	}
+	
+	region_alloc(pgdir,(void*)(0x8000000-4096),4096);
+
 	volatile uint32_t entry = elf->entry;	
 	return entry;
 	//if(*(uint32_t *)elf==elf_magic)while(1);	
