@@ -54,6 +54,8 @@ void game_init(void) {
 	env_init();
 	uint32_t eip = loader();
 	printk("loader complete\n");
+	printk("eip	%x\n",eip);
+	printk("kernpgdir %x\n",kern_pgdir);
 	((void(*)(void))eip)();
 	printk("loader fail\n");
 	while(1);
@@ -72,8 +74,7 @@ uint32_t loader(void){
 	int j=0;
 	for(;j<elf->phnum;j++){
 		ph=(void*)buf+elf->phoff+j*elf->phentsize;
-		if(ph->type==ELF_PROG_LOAD){
-			printk("%x  %x\n",ph->vaddr,ph->memsz);
+		if(ph->type==ELF_PROG_LOAD){	
 			region_alloc(kern_pgdir,(void*)ph->vaddr,ph->memsz);		
 			readseg((unsigned char*)ph->vaddr,ph->filesz,102400+ph->off);
 			memset((void*)(ph->vaddr+ph->filesz),0,ph->memsz-ph->filesz);

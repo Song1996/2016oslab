@@ -56,15 +56,15 @@ i386_detect_memory(void)
 static void *
 boot_alloc(uint32_t n)
 {
-	static char *free;	// virtual address of next byte of free memory
-	char* ans;
-	if (!free) {
+	static char *nextfree;	// virtual address of next byte of free memory
+	char* result;
+	if (!nextfree) {
 		extern char end[];
-		free = ROUNDUP((char *) end, PGSIZE);
+		nextfree = ROUNDUP((char *) end, PGSIZE);
 	}
-	ans = free;
-	free+=((ROUNDUP(n,PGSIZE))>>PGSHIFT)*PGSIZE;
-	return ans;
+	result = nextfree;
+	nextfree+=((ROUNDUP(n,PGSIZE))>>PGSHIFT)*PGSIZE;
+	return result;
 }
 
 void
@@ -88,7 +88,7 @@ mem_init(void)
 				0x0,PTE_W|PTE_U);
 	boot_map_region(kern_pgdir,
 				0x00000,
-				0x100000,
+				0x400000,
 				0x00000,PTE_W|PTE_U);
 	printk("ready to cr3?\n");
 	lcr3(PADDR(kern_pgdir));
@@ -136,10 +136,10 @@ page_init(void)
 	extern char end[];
 
 	printk("pageinit %x\n",page_free_list);
-	printk(" the start page %x\n",pa2page((physaddr_t)(end-0xc0000000/*+PGSIZE+npages*sizeof(struct PageInfo)*/)) );
+	printk(" the start page %x\n",pa2page((physaddr_t)(end-0xc0000000+PGSIZE+npages*sizeof(struct PageInfo)+ROUNDUP(sizeof(struct Env)*1024,PGSIZE))) );
 	printk(" the end page %x\n",&pages[npages-1]);
 	size_t i = npages-1;	
-	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo)+sizeof(struct Env)*NENV)) ){	
+	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo)+ROUNDUP(sizeof(struct Env)*NENV,PGSIZE))) ){	
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];
