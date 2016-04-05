@@ -59,11 +59,12 @@ boot_alloc(uint32_t n)
 	static char *nextfree;	// virtual address of next byte of free memory
 	char* result;
 	if (!nextfree) {
-		extern char end[];
+		extern char end[];	
 		nextfree = ROUNDUP((char *) end, PGSIZE);
 	}
 	result = nextfree;
 	nextfree+=((ROUNDUP(n,PGSIZE))>>PGSHIFT)*PGSIZE;
+	printk("boot alloc \n result	%x\n nextfree	%x\n",result,nextfree);	
 	return result;
 }
 
@@ -139,13 +140,14 @@ page_init(void)
 	printk(" the start page %x\n",pa2page((physaddr_t)(end-0xc0000000+PGSIZE+npages*sizeof(struct PageInfo)+ROUNDUP(sizeof(struct Env)*1024,PGSIZE))) );
 	printk(" the end page %x\n",&pages[npages-1]);
 	size_t i = npages-1;	
-	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo)+ROUNDUP(sizeof(struct Env)*NENV,PGSIZE))) ){	
+	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+ROUNDUP(npages*sizeof(struct PageInfo),PGSIZE)+ROUNDUP(sizeof(struct Env)*NENV,PGSIZE))) ){	
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];
 		i--;
 	}
 	page_free_list = page_free_list -> pp_link;
+	printk("the first page after page init %x\n",page2pa(page_free_list));
 }
 
 //

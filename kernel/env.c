@@ -44,16 +44,16 @@ struct Pseudodesc gdt_pd = {
 
 void
 env_init(){	
-	/*for(int i=0;i<NENV;i++){
-		printk("%d	%x\n",i,&envs[i]);
+	for(int i=NENV-1;i>=0;i--){	
 		envs[i].env_id=0;
 		envs[i].env_parent_id=0;
 		envs[i].env_type=ENV_TYPE_IDLE;
 		envs[i].env_status=0;
 		envs[i].env_runs=0;
 		envs[i].env_pgdir=NULL;
+		envs[i].env_link = env_free_list;
 		env_free_list = &envs[i];
-	}*/
+	}
 	//while(1);
 	printk("envs start%x\n",envs);
 	printk("envs end%x\n",&envs[NENV-1]);
