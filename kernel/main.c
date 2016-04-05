@@ -24,6 +24,8 @@ extern pde_t *kern_pgdir;
 void env_init(void);
 void mem_init(void);
 void region_alloc(pde_t*,void*,size_t);
+int env_alloc(void* newenv_store, int32_t parent_id);
+
 
 static inline int 
 in_long(short port) {
@@ -52,6 +54,8 @@ void game_init(void) {
 	printk("entrypgdir %x\n",entry_pgdir);
 	mem_init();
 	env_init();
+	void *e;
+	assert(env_alloc(&e,0)==0);
 	uint32_t eip = loader();
 	printk("loader complete\n");
 	printk("eip	%x\n",eip);
