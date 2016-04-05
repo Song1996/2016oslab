@@ -78,7 +78,7 @@ keyboard_event() {
 	uint32_t val = in_byte(0x61);
 	out_byte(0x61,val | 0x80);
 	out_byte(0x61,val);
-	printk("%s,%d: key code =%x\n",__FUNCTION__,__LINE__,code);
+	//printk("%s,%d: key code =%x\n",__FUNCTION__,__LINE__,code);
 	key_code = code;
 	press_key(code);
 }

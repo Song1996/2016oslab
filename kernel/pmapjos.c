@@ -4,6 +4,7 @@
 #include "./include/jos/mmu.h"
 #include "./include/jos/error.h"
 #include "./include/jos/string.h"
+#include "./include/jos/env.h"
 #include "./include/jos/assert.h"
 
 #include "./include/jos/pmap.h"
@@ -36,19 +37,12 @@ static void
 i386_detect_memory(void)
 {
 	size_t npages_extmem;
-
-	// Use CMOS calls to measure available base & extended memory.
-	// (CMOS calls return results in kilobytes.)
 	npages_basemem = (nvram_read(NVRAM_BASELO) * 1024) / PGSIZE;
 	npages_extmem = (nvram_read(NVRAM_EXTLO) * 1024) / PGSIZE;
-
-	// Calculate the number of physical pages available in both base
-	// and extended memory.
 	if (npages_extmem)
 		npages = (EXTPHYSMEM / PGSIZE) + npages_extmem;
 	else
 		npages = npages_basemem;
-
 	printk("Physical memory: %dK available, base = %dK, extended = %dK,pagenum=%d\n",
 		npages * PGSIZE / 1024,
 		npages_basemem * PGSIZE / 1024,
@@ -62,14 +56,14 @@ i386_detect_memory(void)
 static void *
 boot_alloc(uint32_t n)
 {
-	static char *nextfree;	// virtual address of next byte of free memory
-	if (!nextfree) {
-		extern char end[];
-		nextfree = ROUNDUP((char *) end, PGSIZE);
-	}
+	static char *free;	// virtual address of next byte of free memory
 	char* ans;
-	ans = nextfree;
-	nextfree+=ROUNDUP(n,PGSIZE);
+	if (!free) {
+		extern char end[];
+		free = ROUNDUP((char *) end, PGSIZE);
+	}
+	ans = free;
+	free+=((ROUNDUP(n,PGSIZE))>>PGSHIFT)*PGSIZE;
 	return ans;
 }
 
@@ -77,21 +71,17 @@ void
 mem_init(void)
 {
 	uint32_t cr0;	
-
 	i386_detect_memory();
-
 	kern_pgdir = (pde_t *) boot_alloc(PGSIZE);
-	
 	memset(kern_pgdir, 0, PGSIZE);
-	kern_pgdir[PDX(UVPT)] = PADDR(kern_pgdir) | PTE_U | PTE_P;
-
-
 	pages=(struct PageInfo*)boot_alloc(npages*sizeof(struct PageInfo));
-	
+	extern struct Env* envs;
+	envs = (struct Env*) boot_alloc(NENV * sizeof(struct Env));
+	printk("envs start %x\n",envs);
+	printk("envs end %x\n",&envs[NENV-1]);
+	memset(envs,0,NENV * sizeof(struct Env));
 	printk("pages	%x\n",pages);
-	
 	page_init();
-
 	boot_map_region(kern_pgdir,
 				0xc0000000,
 				0xc0400000-0xc0000000,
@@ -100,17 +90,14 @@ mem_init(void)
 				0x00000,
 				0x100000,
 				0x00000,PTE_W|PTE_U);
-	
 	printk("ready to cr3?\n");
 	lcr3(PADDR(kern_pgdir));
-
 	printk("hellowold\n");
 	//while(1);
 	cr0 = rcr0();
 	cr0 |= CR0_PE|CR0_PG|CR0_AM|CR0_WP|CR0_NE|CR0_MP;
 	cr0 &= ~(CR0_TS|CR0_EM);
 	lcr0(cr0);
-
 }
 
 // --------------------------------------------------------------
@@ -149,10 +136,10 @@ page_init(void)
 	extern char end[];
 
 	printk("pageinit %x\n",page_free_list);
-	printk(" the start page %x\n",pa2page((physaddr_t)(end-0xc0000000+PGSIZE+npages*sizeof(struct PageInfo))) );
+	printk(" the start page %x\n",pa2page((physaddr_t)(end-0xc0000000/*+PGSIZE+npages*sizeof(struct PageInfo)*/)) );
 	printk(" the end page %x\n",&pages[npages-1]);
 	size_t i = npages-1;	
-	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo))) ){	
+	while( page_free_list!=pa2page((physaddr_t)(end-KERNBASE+PGSIZE+npages*sizeof(struct PageInfo)+sizeof(struct Env)*NENV)) ){	
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];

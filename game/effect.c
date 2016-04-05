@@ -67,7 +67,6 @@ update_snake_pos(void) {
 		gamepool[snake[0].y][snake[0].x]=SNAKE;
 	}
 	struct snakenode temp;
-	printk("game execute\n");
 	i=snakelen-1;		
 	temp.x=snake[i].x;
 	temp.y=snake[i].y;

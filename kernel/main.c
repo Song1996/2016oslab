@@ -6,9 +6,8 @@
 #include "./include/nassert.h"
 #include "./boot/boot.h"
 #include "./include/nstring.h"
-//#include <elf.h>
-//#include "./include/memlayout.h"
-//#include "./include/pmap.h"
+
+
 #define SECTSIZE 512
 #define ELF_PROG_LOAD 1
 
@@ -22,6 +21,7 @@ extern pde_t entry_pgdir[];
 extern pte_t entry_pgtable[];
 extern void* pageinsert(pde_t*pgdir,const void* va,int create);
 extern pde_t *kern_pgdir;
+void env_init(void);
 void mem_init(void);
 void region_alloc(pde_t*,void*,size_t);
 
@@ -51,7 +51,7 @@ void game_init(void) {
 	init_intr();	
 	printk("entrypgdir %x\n",entry_pgdir);
 	mem_init();
-	printk("hello!\n");
+	env_init();
 	uint32_t eip = loader();
 	printk("loader complete\n");
 	((void(*)(void))eip)();

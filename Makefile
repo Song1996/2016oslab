@@ -105,7 +105,7 @@ $(OBJ_GAME_DIR)/%.o : $(GAME_DIR)/%.[cS]
 DEPS := $(shell find -name "*.d")
 -include $(DEPS)
 
-.PHONY: qemu debug gdb clean
+.PHONY: qemu debug gdb clean submit
 
 qemu: $(IMAGE)
 	$(QEMU) $(QEMU_OPTIONS) $(IMAGE)
@@ -125,3 +125,6 @@ clean:
 	@rm -rf $(BOOT)    2> /dev/null
 	@rm -rf $(KERNEL)  2> /dev/null
 	@rm -rf $(IMAGE)   2> /dev/null
+
+submit:clean
+	cd .. && tar -zcvf 141242045.tar.gz 2016oslab/
