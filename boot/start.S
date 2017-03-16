@@ -1,8 +1,9 @@
 # 系统启动时，BIOS会完成初始化，然后将磁盘第一个512字节保存到物理内存0x00007C00
 # 位置，然后设置%CS=0000h, %IP=7C00h
-
-#include "asm.h"
 # 从此开始是16位代码
+#include "asm.h"
+
+
 .code16
 .globl start
 start:
